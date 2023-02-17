@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "mi_clave_de_contenedors",
+  "info": {
+    "name": "MiClaveDeContenedor"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Comayagua1": {
+      "type": "string"
+    }
+  }
+}

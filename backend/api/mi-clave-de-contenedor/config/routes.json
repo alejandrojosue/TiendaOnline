@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/mi-clave-de-contenedor",
+      "handler": "mi-clave-de-contenedor.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/mi-clave-de-contenedor",
+      "handler": "mi-clave-de-contenedor.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/mi-clave-de-contenedor",
+      "handler": "mi-clave-de-contenedor.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
