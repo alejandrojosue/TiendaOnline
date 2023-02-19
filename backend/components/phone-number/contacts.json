@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_phone_number_contacts",
+  "info": {
+    "name": "Contacts",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "PhoneNumber": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 9,
+      "minLength": 8
+    }
+  }
+}

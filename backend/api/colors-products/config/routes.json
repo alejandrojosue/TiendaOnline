@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/colors-products",
+      "handler": "colors-products.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/colors-products/count",
+      "handler": "colors-products.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/colors-products/:id",
+      "handler": "colors-products.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/colors-products",
+      "handler": "colors-products.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/colors-products/:id",
+      "handler": "colors-products.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/colors-products/:id",
+      "handler": "colors-products.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

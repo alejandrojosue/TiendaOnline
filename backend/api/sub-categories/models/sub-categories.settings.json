@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_categories",
+  "info": {
+    "name": "SubCategories",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 20
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "products": {
+      "collection": "products",
+      "via": "sub_categories",
+      "dominant": true
+    },
+    "category": {
+      "model": "categories",
+      "via": "sub_categories"
+    }
+  }
+}

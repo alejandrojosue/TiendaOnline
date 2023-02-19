@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "colors",
+  "info": {
+    "name": "Colors",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "color": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 21
+    },
+    "colors_products": {
+      "via": "color",
+      "collection": "colors-products"
+    }
+  }
+}

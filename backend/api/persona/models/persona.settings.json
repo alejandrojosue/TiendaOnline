@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "personas",
+  "info": {
+    "name": "Customers",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Identification": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 13,
+      "private": false,
+      "maxLength": 15
+    },
+    "Name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 20
+    },
+    "LastName": {
+      "type": "string",
+      "required": false,
+      "maxLength": 20
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "Phone": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 9,
+      "minLength": 8
+    }
+  }
+}
