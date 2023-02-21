@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
 
                     Toast.makeText(this@MainActivity,token, Toast.LENGTH_LONG).show()
-
                     val iProductsRepository =  ServiceBuilder.buildService(IProductsRepository::class.java)
                         iProductsRepository.getAll().enqueue(object : Callback<List<Product>> {
                             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {

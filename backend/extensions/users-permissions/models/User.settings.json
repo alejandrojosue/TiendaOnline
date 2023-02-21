@@ -78,7 +78,7 @@
     },
     "Phone": {
       "type": "string",
-      "required": true,
+      "required": false,
       "maxLength": 9,
       "unique": true,
       "minLength": 8
