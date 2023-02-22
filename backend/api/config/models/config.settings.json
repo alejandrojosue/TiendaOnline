@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "configs",
+  "info": {
+    "name": "Config"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "CompanyName": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "maxLength": 20
+    },
+    "CAI": {
+      "type": "string",
+      "required": true,
+      "maxLength": 14
+    },
+    "RTN": {
+      "type": "string",
+      "maxLength": 16
+    },
+    "Phones": {
+      "type": "component",
+      "repeatable": true,
+      "component": "phone-number.contacts"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Address": {
+      "type": "string",
+      "required": true,
+      "maxLength": 120
+    }
+  }
+}
