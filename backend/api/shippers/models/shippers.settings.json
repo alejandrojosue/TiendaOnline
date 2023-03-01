@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shippers",
+  "info": {
+    "name": "Shippers"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "CompanyName": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Phone": {
+      "type": "string",
+      "default": "9",
+      "required": true,
+      "unique": true
+    }
+  }
+}

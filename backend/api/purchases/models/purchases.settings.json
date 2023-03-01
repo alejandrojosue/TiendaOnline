@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "purchases",
+  "info": {
+    "name": "Purchases",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "supplier": {
+      "model": "suppliers"
+    },
+    "Date": {
+      "type": "datetime"
+    },
+    "purchases_details": {
+      "via": "purchase",
+      "collection": "purchases-details"
+    },
+    "payment_method": {
+      "model": "payment-methods"
+    }
+  }
+}

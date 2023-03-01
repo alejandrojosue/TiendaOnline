@@ -12,8 +12,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val identifier = "user@gmail.com"
         val password = "strapiPassword"
-        LoginController(identifier, password,this)
+//        LoginController(identifier, password,this)
         val preferenceHelper = PreferenceHelper.defaultPrefs(this)
-        ProductController().getAll(preferenceHelper["token", ""])
+//        ProductController().getAll(preferenceHelper["token", ""])
     }
 }

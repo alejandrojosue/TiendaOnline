@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "records",
+  "info": {
+    "name": "Records",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Date": {
+      "type": "datetime",
+      "required": true
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "Action": {
+      "type": "string",
+      "required": true,
+      "maxLength": 260
+    }
+  }
+}
