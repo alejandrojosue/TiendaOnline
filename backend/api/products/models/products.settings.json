@@ -45,10 +45,10 @@
     "Price": {
       "type": "decimal"
     },
-    "Colors": {
+    "Color": {
       "type": "component",
       "repeatable": true,
-      "component": "products-colors.colors"
+      "component": "products-colors.color"
     }
   }
 }
