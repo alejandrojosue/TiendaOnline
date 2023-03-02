@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_orders_details_details",
+  "info": {
+    "name": "Details",
+    "icon": "parking",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "model": "products"
+    },
+    "Quantity": {
+      "type": "integer",
+      "required": true
+    },
+    "Price": {
+      "type": "decimal",
+      "required": true
+    }
+  }
+}

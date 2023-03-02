@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sales_details_details",
+  "info": {
+    "name": "Details",
+    "icon": "cart-arrow-down"
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "model": "products"
+    }
+  }
+}

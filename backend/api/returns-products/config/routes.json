@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/returns-products",
+      "handler": "returns-products.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/returns-products/count",
+      "handler": "returns-products.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/returns-products/:id",
+      "handler": "returns-products.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/returns-products",
+      "handler": "returns-products.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/returns-products/:id",
+      "handler": "returns-products.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/returns-products/:id",
+      "handler": "returns-products.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

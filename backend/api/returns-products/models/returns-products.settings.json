@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "returns_products",
+  "info": {
+    "name": "ReturnsProducts"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Date": {
+      "type": "datetime"
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "Details": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sales-details.details"
+    },
+    "Description": {
+      "type": "string"
+    }
+  }
+}
