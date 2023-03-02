@@ -5,6 +5,7 @@ data class Product(
     val SKU: String,
     val colors_product: Any,
     val colors_products: List<ColorsProduct>,
+    val Price: Float,
     val created_at: String,
     val description: String,
     val id: Int,

@@ -17,10 +17,6 @@
       "required": true,
       "unique": true,
       "maxLength": 21
-    },
-    "colors_products": {
-      "via": "color",
-      "collection": "colors-products"
     }
   }
 }

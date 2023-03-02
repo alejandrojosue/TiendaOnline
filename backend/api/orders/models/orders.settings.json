@@ -33,6 +33,11 @@
     },
     "FreightCost": {
       "type": "decimal"
+    },
+    "Details": {
+      "type": "component",
+      "repeatable": true,
+      "component": "orders-details.details"
     }
   }
 }

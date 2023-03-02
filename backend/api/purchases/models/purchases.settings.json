@@ -22,10 +22,6 @@
     "Date": {
       "type": "datetime"
     },
-    "purchases_details": {
-      "via": "purchase",
-      "collection": "purchases-details"
-    },
     "payment_method": {
       "model": "payment-methods"
     }

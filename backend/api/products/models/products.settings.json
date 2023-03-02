@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "products",
   "info": {
-    "name": "Products"
+    "name": "Products",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -41,9 +42,13 @@
       "via": "products",
       "collection": "sub-categories"
     },
-    "colors_products": {
-      "via": "product",
-      "collection": "colors-products"
+    "Price": {
+      "type": "decimal"
+    },
+    "Colors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "products-colors.colors"
     }
   }
 }

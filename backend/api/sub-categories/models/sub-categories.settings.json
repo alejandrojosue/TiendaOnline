@@ -23,8 +23,8 @@
       "maxLength": 80
     },
     "products": {
-      "collection": "products",
       "via": "sub_categories",
+      "collection": "products",
       "dominant": true
     },
     "category": {

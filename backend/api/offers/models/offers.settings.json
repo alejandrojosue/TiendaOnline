@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "offers",
   "info": {
-    "name": "Offers"
+    "name": "Offers",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,8 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "colors_product": {
-      "model": "colors-products"
+    "StartDate": {
+      "type": "date",
+      "required": true
+    },
+    "EndDate": {
+      "type": "date"
+    },
+    "Price": {
+      "type": "decimal"
     }
   }
 }
