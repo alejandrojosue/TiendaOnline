@@ -14,6 +14,7 @@ class ProductController {
     private fun getProducts(token:String){
             ServiceBuilder.token = token
         val iProductsRepository =  ServiceBuilder.buildService(IProductsRepository::class.java)
+
             iProductsRepository.getAll().enqueue(object : Callback<List<Product>> {
                 override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                     if (response.isSuccessful) {

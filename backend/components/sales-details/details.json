@@ -2,12 +2,19 @@
   "collectionName": "components_sales_details_details",
   "info": {
     "name": "Details",
-    "icon": "cart-arrow-down"
+    "icon": "cart-arrow-down",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "product": {
-      "model": "products"
+    "products_color": {
+      "model": "products-colors"
+    },
+    "QuantityDetails": {
+      "type": "integer"
+    },
+    "Price": {
+      "type": "decimal"
     }
   }
 }

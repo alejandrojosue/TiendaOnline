@@ -22,11 +22,6 @@
       "type": "string",
       "maxLength": 80
     },
-    "products": {
-      "via": "sub_categories",
-      "collection": "products",
-      "dominant": true
-    },
     "category": {
       "model": "categories",
       "via": "sub_categories"

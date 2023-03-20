@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-<!--  PERMISOS PARA CONEXIONES HTTP -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-<!-- PERMITIR LA CONEXION A HTTP   -->
-<!--    android:usesCleartextTraffic="true"  -->
-<!--LO IDEAL ES QUITARLA PARA PONERLA EN MODO DE PRODUCCION-->
-    <application
+    <!-- PERMISOS PARA CONEXIONES HTTP -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
-        android:usesCleartextTraffic="true"
+    <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,9 +12,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.TiendaOnline"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.AuthActivityController"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

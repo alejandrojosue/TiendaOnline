@@ -7,8 +7,8 @@
   },
   "options": {},
   "attributes": {
-    "product": {
-      "model": "products"
+    "products_color": {
+      "model": "products-colors"
     },
     "Quantity": {
       "type": "integer",

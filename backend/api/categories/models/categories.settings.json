@@ -26,6 +26,10 @@
     "sub_categories": {
       "via": "category",
       "collection": "sub-categories"
+    },
+    "productsC": {
+      "via": "categories",
+      "collection": "products"
     }
   }
 }
