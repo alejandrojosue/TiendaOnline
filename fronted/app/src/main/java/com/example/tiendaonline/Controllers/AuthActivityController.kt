@@ -30,9 +30,14 @@ open class AuthActivityController : AppCompatActivity() {
             if(!editTextPassword.text.isNullOrEmpty() && !editTextUsername.text.isNullOrEmpty()){
                 taskToken(this)
                 val preferenceHelper = PreferenceHelper.defaultPrefs(this)
-                ProductController().getAll(preferenceHelper["token", ""])
-//            ABRIR VENTANA HOME
-                startActivity(Intent(this,HomeActivity::class.java))
+                println(preferenceHelper["codeRes", ""])
+                if(preferenceHelper["codeRes", ""].toString()=="200"){
+                    ProductController().getAll(preferenceHelper["token", ""])
+                    //ABRIR VENTANA HOME
+                    startActivity(Intent(this,HomeActivity::class.java))
+                }else{
+                    Toast.makeText(this, "Usuario y/o clave incorrectos",Toast.LENGTH_LONG).show()
+                }
             }else{
                 Toast.makeText(this, "Llene los campos",Toast.LENGTH_LONG).show()
             }
@@ -42,19 +47,22 @@ open class AuthActivityController : AppCompatActivity() {
     private fun setToken(context: Context){
         val requestModel = LoginRequest(editTextUsername.text!!.toString(), editTextPassword.text!!.toString())
         val response = ServiceBuilder.buildService(ILoginRepository::class.java)
-
         response.sendReq(requestModel).enqueue(
             object : Callback<LoginResponse> {
                 override fun onResponse(
                     call: Call<LoginResponse>,
                     response: Response<LoginResponse>
                 ) {
-                    if(response.body()?.jwt.toString() != null){
-                        val preference = PreferenceHelper.defaultPrefs(context)
-                        preference["token"] = response.body()?.jwt.toString()
+                    val preference = PreferenceHelper.defaultPrefs(context)
+                    preference["codeRes"] = response.code().toString()
+                    if(response.code()==200){
+                        if(response.body()?.jwt.toString() != null){
+                            preference["token"] = response.body()?.jwt.toString()
+                        }
+                    }else{
+                        Toast.makeText(context, "Code ${response.code()}",Toast.LENGTH_LONG).show()
                     }
                 }
-
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     println(t.message.toString())
                 }
