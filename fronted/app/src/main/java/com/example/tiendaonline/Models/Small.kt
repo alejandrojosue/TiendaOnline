@@ -1,6 +1,6 @@
-package com.example.tiendaonline.EntityModels.Repository
+package com.example.tiendaonline.Models
 
-data class Thumbnail(
+data class Small(
     val ext: String,
     val hash: String,
     val height: Int,

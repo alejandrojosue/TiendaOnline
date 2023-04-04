@@ -1,4 +1,4 @@
-package com.example.tiendaonline.EntityModels.Repository
+package com.example.tiendaonline.Models
 
 data class Formats(
     val medium: Medium,

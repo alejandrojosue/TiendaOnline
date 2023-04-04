@@ -1,4 +1,4 @@
-package com.example.tiendaonline.EntityModels.Repository
+package com.example.tiendaonline.Models
 
 data class User(
     val Identification: String,

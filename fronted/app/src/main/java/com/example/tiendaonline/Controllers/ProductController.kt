@@ -1,6 +1,6 @@
 package com.example.tiendaonline.Controllers
 
-import com.example.tiendaonline.EntityModels.Repository.Product
+import com.example.tiendaonline.Models.Product
 import com.example.tiendaonline.Services.ApiServices.IProductsRepository
 import com.example.tiendaonline.Services.ServiceBuilder
 import kotlinx.coroutines.CoroutineScope

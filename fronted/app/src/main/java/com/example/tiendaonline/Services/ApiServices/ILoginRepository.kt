@@ -1,7 +1,7 @@
 package com.example.tiendaonline.Services.ApiServices
 
-import com.example.tiendaonline.EntityModels.Repository.LoginRequest
-import com.example.tiendaonline.EntityModels.Repository.LoginResponse
+import com.example.tiendaonline.Models.LoginRequest
+import com.example.tiendaonline.Models.LoginResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

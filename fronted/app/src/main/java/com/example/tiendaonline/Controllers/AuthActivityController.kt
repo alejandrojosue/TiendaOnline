@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.tiendaonline.EntityModels.Repository.LoginRequest
-import com.example.tiendaonline.EntityModels.Repository.LoginResponse
+import com.example.tiendaonline.Models.LoginRequest
+import com.example.tiendaonline.Models.LoginResponse
 import com.example.tiendaonline.HomeActivity
 import com.example.tiendaonline.R
 import com.example.tiendaonline.Services.ApiServices.ILoginRepository
@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.system.exitProcess
 
 open class AuthActivityController : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

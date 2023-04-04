@@ -1,9 +1,7 @@
-package com.example.tiendaonline.EntityModels.Repository
+package com.example.tiendaonline.Models
 
-data class Product(
+data class Category(
     val Name: String,
-    val Price: Int,
-    val categories: List<Category>,
     val created_at: String,
     val description: String,
     val id: Int,
