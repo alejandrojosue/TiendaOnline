@@ -517,7 +517,10 @@
       "Products": {
         "required": [
           "id",
-          "Name"
+          "Name",
+          "description",
+          "Price",
+          "img"
         ],
         "properties": {
           "id": {
@@ -673,7 +676,9 @@
       },
       "NewProducts": {
         "required": [
-          "Name"
+          "Name",
+          "description",
+          "Price"
         ],
         "properties": {
           "Name": {

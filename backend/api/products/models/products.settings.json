@@ -20,10 +20,12 @@
     },
     "description": {
       "type": "string",
-      "maxLength": 30
+      "maxLength": 30,
+      "required": true
     },
     "Price": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true
     },
     "categories": {
       "collection": "categories",
@@ -37,7 +39,7 @@
         "images"
       ],
       "plugin": "upload",
-      "required": false,
+      "required": true,
       "pluginOptions": {}
     },
     "color": {

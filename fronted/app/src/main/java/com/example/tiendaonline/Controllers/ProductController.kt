@@ -1,7 +1,7 @@
 package com.example.tiendaonline.Controllers
 import android.util.LruCache
 import android.widget.ArrayAdapter
-import com.example.tiendaonline.Models.ProductClient
+import com.example.tiendaonline.Middlewares.Models.ProductClient
 import com.example.tiendaonline.Repository.ProductsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -569,7 +569,10 @@
             "items": {
               "required": [
                 "id",
-                "Name"
+                "Name",
+                "description",
+                "Price",
+                "img"
               ],
               "properties": {
                 "id": {

@@ -1,4 +1,4 @@
-package com.example.tiendaonline.Models
+package com.example.tiendaonline.Middlewares.Models
 
 data class Img(
     val alternativeText: String,

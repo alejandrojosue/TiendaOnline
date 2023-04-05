@@ -1,7 +1,10 @@
 package com.example.tiendaonline.Services
 
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 object ServiceBuilder {
@@ -10,7 +13,7 @@ object ServiceBuilder {
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
             if(token.contains(".")){
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer ${token}")
+                    .addHeader("Authorization", "Bearer ${token!!}")
                     .build()
                 return chain.proceed(request)
             }
@@ -34,6 +37,7 @@ object ServiceBuilder {
         }else{
             client = OkHttpClient.Builder().build()
         }
+
         val retrofit = Retrofit.Builder()
             .baseUrl("http://$localhost:1337/") // change this IP for testing by your actual machine IP
             .addConverterFactory(GsonConverterFactory.create())

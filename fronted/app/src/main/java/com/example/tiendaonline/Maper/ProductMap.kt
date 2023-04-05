@@ -1,7 +1,7 @@
 package com.example.tiendaonline.Maper
 
-import com.example.tiendaonline.Models.Product
-import com.example.tiendaonline.Models.ProductClient
+import com.example.tiendaonline.Middlewares.Models.Product
+import com.example.tiendaonline.Middlewares.Models.ProductClient
 
 class ProductMap {
     companion object {

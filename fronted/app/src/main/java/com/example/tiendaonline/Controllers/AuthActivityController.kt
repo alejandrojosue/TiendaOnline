@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.tiendaonline.Models.LoginRequest
-import com.example.tiendaonline.Models.LoginResponse
+import com.example.tiendaonline.Middlewares.Models.LoginRequest
+import com.example.tiendaonline.Middlewares.Models.LoginResponse
 import com.example.tiendaonline.HomeActivity
 import com.example.tiendaonline.R
 import com.example.tiendaonline.Services.ApiServices.ILoginRepository
@@ -27,6 +27,7 @@ open class AuthActivityController : AppCompatActivity() {
         title = "Login"
 
         btn.setOnClickListener{
+
 
         }
         buttonLogin.setOnClickListener {

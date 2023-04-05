@@ -1,6 +1,6 @@
-package com.example.tiendaonline.Models
+package com.example.tiendaonline.Middlewares.Models
 
-data class Thumbnail(
+data class Medium(
     val ext: String,
     val hash: String,
     val height: Int,
