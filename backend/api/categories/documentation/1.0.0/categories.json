@@ -590,6 +590,12 @@
                     "type": "string"
                   }
                 },
+                "img": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },

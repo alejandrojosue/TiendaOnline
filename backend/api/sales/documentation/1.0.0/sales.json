@@ -593,24 +593,37 @@
                 "id": {
                   "type": "string"
                 },
-                "products_color": {
+                "QuantityDetails": {
+                  "type": "integer"
+                },
+                "product": {
                   "required": [
-                    "id"
+                    "id",
+                    "Name"
                   ],
                   "properties": {
                     "id": {
                       "type": "string"
                     },
-                    "product": {
+                    "Name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "Price": {
+                      "type": "number"
+                    },
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "img": {
                       "type": "string"
                     },
                     "color": {
-                      "type": "string"
-                    },
-                    "Quantity": {
-                      "type": "integer"
-                    },
-                    "img": {
                       "type": "string"
                     },
                     "published_at": {
@@ -623,13 +636,30 @@
                       "type": "string"
                     }
                   }
-                },
-                "QuantityDetails": {
-                  "type": "integer"
-                },
-                "Price": {
-                  "type": "number"
                 }
+              }
+            }
+          },
+          "payment_method": {
+            "required": [
+              "id",
+              "Method"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "Method": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
@@ -662,24 +692,37 @@
                 "id": {
                   "type": "string"
                 },
-                "products_color": {
+                "QuantityDetails": {
+                  "type": "integer"
+                },
+                "product": {
                   "required": [
-                    "id"
+                    "id",
+                    "Name"
                   ],
                   "properties": {
                     "id": {
                       "type": "string"
                     },
-                    "product": {
+                    "Name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "Price": {
+                      "type": "number"
+                    },
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "img": {
                       "type": "string"
                     },
                     "color": {
-                      "type": "string"
-                    },
-                    "Quantity": {
-                      "type": "integer"
-                    },
-                    "img": {
                       "type": "string"
                     },
                     "published_at": {
@@ -692,15 +735,12 @@
                       "type": "string"
                     }
                   }
-                },
-                "QuantityDetails": {
-                  "type": "integer"
-                },
-                "Price": {
-                  "type": "number"
                 }
               }
             }
+          },
+          "payment_method": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

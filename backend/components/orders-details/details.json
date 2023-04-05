@@ -7,9 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "products_color": {
-      "model": "products-colors"
-    },
     "Quantity": {
       "type": "integer",
       "required": true

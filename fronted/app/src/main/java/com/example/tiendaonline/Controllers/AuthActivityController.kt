@@ -25,7 +25,13 @@ open class AuthActivityController : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
         title = "Login"
+
+        btn.setOnClickListener{
+
+        }
         buttonLogin.setOnClickListener {
+
+
             if(!editTextPassword.text.isNullOrEmpty() && !editTextUsername.text.isNullOrEmpty()){
                 taskToken(this)
                 val preferenceHelper = PreferenceHelper.defaultPrefs(this)

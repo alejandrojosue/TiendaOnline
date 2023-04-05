@@ -29,6 +29,19 @@
       "collection": "categories",
       "via": "productsC",
       "dominant": true
+    },
+    "img": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "color": {
+      "model": "colors"
     }
   }
 }

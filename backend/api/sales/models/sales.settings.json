@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "sales",
   "info": {
-    "name": "Sales"
+    "name": "Sales",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -23,6 +24,9 @@
       "type": "component",
       "repeatable": true,
       "component": "sales-details.details"
+    },
+    "payment_method": {
+      "model": "payment-methods"
     }
   }
 }

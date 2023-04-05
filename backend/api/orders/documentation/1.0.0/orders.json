@@ -635,37 +635,6 @@
                 "id": {
                   "type": "string"
                 },
-                "products_color": {
-                  "required": [
-                    "id"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "product": {
-                      "type": "string"
-                    },
-                    "color": {
-                      "type": "string"
-                    },
-                    "Quantity": {
-                      "type": "integer"
-                    },
-                    "img": {
-                      "type": "string"
-                    },
-                    "published_at": {
-                      "type": "string"
-                    },
-                    "created_by": {
-                      "type": "string"
-                    },
-                    "updated_by": {
-                      "type": "string"
-                    }
-                  }
-                },
                 "Quantity": {
                   "type": "integer"
                 },
@@ -719,37 +688,6 @@
               "properties": {
                 "id": {
                   "type": "string"
-                },
-                "products_color": {
-                  "required": [
-                    "id"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "product": {
-                      "type": "string"
-                    },
-                    "color": {
-                      "type": "string"
-                    },
-                    "Quantity": {
-                      "type": "integer"
-                    },
-                    "img": {
-                      "type": "string"
-                    },
-                    "published_at": {
-                      "type": "string"
-                    },
-                    "created_by": {
-                      "type": "string"
-                    },
-                    "updated_by": {
-                      "type": "string"
-                    }
-                  }
                 },
                 "Quantity": {
                   "type": "integer"

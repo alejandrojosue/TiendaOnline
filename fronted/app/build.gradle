@@ -45,4 +45,9 @@ dependencies {
     // retrofit para httpClient
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    //Importar un objeto tipo Simple que es lo mismo que IEnumerable
+    //implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    // Usar cache
+    //implementation 'com.github.VictorChow:RetrofitCache:latest-version'
+
 }

@@ -7,14 +7,11 @@
   },
   "options": {},
   "attributes": {
-    "products_color": {
-      "model": "products-colors"
-    },
     "QuantityDetails": {
       "type": "integer"
     },
-    "Price": {
-      "type": "decimal"
+    "product": {
+      "model": "products"
     }
   }
 }

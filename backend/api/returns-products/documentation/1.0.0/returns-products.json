@@ -605,24 +605,37 @@
                 "id": {
                   "type": "string"
                 },
-                "products_color": {
+                "QuantityDetails": {
+                  "type": "integer"
+                },
+                "product": {
                   "required": [
-                    "id"
+                    "id",
+                    "Name"
                   ],
                   "properties": {
                     "id": {
                       "type": "string"
                     },
-                    "product": {
+                    "Name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "Price": {
+                      "type": "number"
+                    },
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "img": {
                       "type": "string"
                     },
                     "color": {
-                      "type": "string"
-                    },
-                    "Quantity": {
-                      "type": "integer"
-                    },
-                    "img": {
                       "type": "string"
                     },
                     "published_at": {
@@ -635,12 +648,6 @@
                       "type": "string"
                     }
                   }
-                },
-                "QuantityDetails": {
-                  "type": "integer"
-                },
-                "Price": {
-                  "type": "number"
                 }
               }
             }
@@ -674,24 +681,37 @@
                 "id": {
                   "type": "string"
                 },
-                "products_color": {
+                "QuantityDetails": {
+                  "type": "integer"
+                },
+                "product": {
                   "required": [
-                    "id"
+                    "id",
+                    "Name"
                   ],
                   "properties": {
                     "id": {
                       "type": "string"
                     },
-                    "product": {
+                    "Name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "Price": {
+                      "type": "number"
+                    },
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "img": {
                       "type": "string"
                     },
                     "color": {
-                      "type": "string"
-                    },
-                    "Quantity": {
-                      "type": "integer"
-                    },
-                    "img": {
                       "type": "string"
                     },
                     "published_at": {
@@ -704,12 +724,6 @@
                       "type": "string"
                     }
                   }
-                },
-                "QuantityDetails": {
-                  "type": "integer"
-                },
-                "Price": {
-                  "type": "number"
                 }
               }
             }
