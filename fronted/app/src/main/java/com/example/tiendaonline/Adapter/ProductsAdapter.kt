@@ -3,7 +3,7 @@ package com.example.tiendaonline.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tiendaonline.Middlewares.Models.ProductClient
+import com.example.tiendaonline.Models.V3.ProductClient
 import com.example.tiendaonline.R
 
 class ProductsAdapter(

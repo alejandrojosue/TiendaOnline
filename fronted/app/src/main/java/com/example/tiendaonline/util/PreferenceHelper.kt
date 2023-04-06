@@ -3,7 +3,6 @@ package com.example.tiendaonline.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.example.tiendaonline.Middlewares.Models.ProductClient
 
 object PreferenceHelper {
 

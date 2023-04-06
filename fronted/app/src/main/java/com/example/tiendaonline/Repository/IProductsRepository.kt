@@ -1,5 +1,6 @@
 package com.example.tiendaonline.Repository
-import com.example.tiendaonline.Middlewares.Models.ProductClient
+import com.example.tiendaonline.Models.ProductInformation.ProductsClient
+
 interface IProductsRepository {
-    suspend fun getAll(): Result<List<ProductClient>>
+    suspend fun getAll(): Result<List<ProductsClient>>
 }

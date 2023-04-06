@@ -3,7 +3,6 @@ package com.example.tiendaonline
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.tiendaonline.Controllers.AuthActivityController
 import com.example.tiendaonline.Repository.ProductsRepository
 import kotlinx.android.synthetic.main.activity_home.*
@@ -24,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
                     val res = products.getAll()
                     if(res.isSuccess){
                          res.getOrNull()?.forEach {
-                            println(it)
+                            println(it.Name)
                         }
                     }else{
 

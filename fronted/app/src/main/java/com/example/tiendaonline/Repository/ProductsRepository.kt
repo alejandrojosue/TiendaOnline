@@ -1,22 +1,16 @@
 package com.example.tiendaonline.Repository
 
 import android.util.LruCache
-import android.widget.Toast
 import com.example.tiendaonline.Maper.ProductMap
-import com.example.tiendaonline.Middlewares.Models.Product
-import com.example.tiendaonline.Middlewares.Models.ProductClient
+import com.example.tiendaonline.Models.ProductInformation.ProductsClient
 import com.example.tiendaonline.Services.ApiServices.IProducts
 import com.example.tiendaonline.Services.ServiceBuilder
-import com.example.tiendaonline.util.PreferenceHelper
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.awaitResponse
 
 class ProductsRepository:IProductsRepository{
     private val maxCache = 5 * 1024 * 1024 // 5MB
-    private val productCache = LruCache<Int,List<ProductClient>>(maxCache)
-    override suspend fun getAll(): Result<List<ProductClient>> {
+    private val productCache = LruCache<Int,List<ProductsClient>>(maxCache)
+    override suspend fun getAll(): Result<List<ProductsClient>> {
         return try{
             // 1 es la clave. Ésta puede ser cualquier numero
             if(productCache.size() == 0){
@@ -25,7 +19,8 @@ class ProductsRepository:IProductsRepository{
                 if(response.isSuccessful){
                     //response devuelve un Product, lo mapeamos para que devuelva un ProductCliente
                     //ponemos valores en la caché
-                    productCache.put(1,response.body()?.map { ProductMap.mapear(it) })
+//                    productCache.put(1,response.body()?.map { ProductMap.mapearV3(it) })
+                    productCache.put(1,(response.body()?.data)?.map { ProductMap.mapearV4(it) })
                     Result.success(productCache[1])
                 }else{
                     Result.failure(Exception(response.message()))
