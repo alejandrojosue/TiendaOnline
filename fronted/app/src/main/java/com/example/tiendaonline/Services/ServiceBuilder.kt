@@ -39,7 +39,7 @@ object ServiceBuilder {
         }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://$localhost:1337/") // change this IP for testing by your actual machine IP
+            .baseUrl("http://$localhost:1338/") // change this IP for testing by your actual machine IP
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
