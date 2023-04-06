@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "return_products",
+  "info": {
+    "singularName": "return-product",
+    "pluralName": "return-products",
+    "displayName": "ReturnProduct"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Date": {
+      "type": "datetime"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "Details": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order-return.details"
+    }
+  }
+}

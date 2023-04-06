@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "configs",
+  "info": {
+    "singularName": "config",
+    "pluralName": "configs",
+    "displayName": "Config"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "CompanyName": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "CAI": {
+      "type": "string"
+    },
+    "RTN": {
+      "type": "string",
+      "required": true,
+      "maxLength": 16
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Address": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "Slogan": {
+      "type": "string"
+    }
+  }
+}

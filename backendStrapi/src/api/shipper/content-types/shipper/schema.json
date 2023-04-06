@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shippers",
+  "info": {
+    "singularName": "shipper",
+    "pluralName": "shippers",
+    "displayName": "Shipper"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "CompanyName": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Description": {
+      "type": "string",
+      "maxLength": 120
+    }
+  }
+}

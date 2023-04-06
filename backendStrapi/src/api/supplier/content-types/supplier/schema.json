@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "suppliers",
+  "info": {
+    "singularName": "supplier",
+    "pluralName": "suppliers",
+    "displayName": "Supplier",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "RTN": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 16
+    },
+    "CompanyName": {
+      "type": "string",
+      "required": true
+    },
+    "ContactName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 40
+    },
+    "ContactTitle": {
+      "type": "string",
+      "required": true
+    },
+    "City": {
+      "type": "string"
+    },
+    "Region": {
+      "type": "string"
+    },
+    "ZipCode": {
+      "type": "string"
+    },
+    "Country": {
+      "type": "string"
+    },
+    "Phone": {
+      "type": "string",
+      "required": true,
+      "maxLength": 9,
+      "unique": true,
+      "minLength": 8
+    },
+    "Website": {
+      "type": "string"
+    }
+  }
+}

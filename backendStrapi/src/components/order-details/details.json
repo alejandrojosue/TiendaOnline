@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_order_details_details",
+  "info": {
+    "displayName": "Details"
+  },
+  "options": {},
+  "attributes": {
+    "Quantity": {
+      "type": "decimal"
+    },
+    "Price": {
+      "type": "decimal"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_phones_phone_numbers",
+  "info": {
+    "displayName": "PhoneNumber"
+  },
+  "options": {},
+  "attributes": {
+    "Phone": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 9,
+      "minLength": 8
+    }
+  }
+}

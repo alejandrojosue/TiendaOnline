@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_order_sales_details",
+  "info": {
+    "displayName": "Details",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Quantity": {
+      "type": "decimal"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    }
+  }
+}
