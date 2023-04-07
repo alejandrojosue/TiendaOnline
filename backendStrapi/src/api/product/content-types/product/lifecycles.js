@@ -23,6 +23,6 @@ module.exports = {
 
     async afterFindMany(e) {
         const { result, params } = e;
-        strapi.io.emit("products", `get`);
+        // strapi.io.emit("products", `get`);
     }
 };

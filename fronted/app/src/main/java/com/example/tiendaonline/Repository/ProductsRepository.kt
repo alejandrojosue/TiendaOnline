@@ -1,5 +1,7 @@
 package com.example.tiendaonline.Repository
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.LruCache
 import com.example.tiendaonline.Maper.ProductMap
 import com.example.tiendaonline.Models.ProductInformation.ProductsClient
@@ -7,7 +9,7 @@ import com.example.tiendaonline.Services.ApiServices.IProducts
 import com.example.tiendaonline.Services.ServiceBuilder
 import retrofit2.awaitResponse
 
-class ProductsRepository:IProductsRepository{
+class ProductsRepository() :IProductsRepository {
     private val maxCache = 5 * 1024 * 1024 // 5MB
     private val productCache = LruCache<Int,List<ProductsClient>>(maxCache)
     override suspend fun getAll(): Result<List<ProductsClient>> {
@@ -32,4 +34,5 @@ class ProductsRepository:IProductsRepository{
             Result.failure(e)
         }
     }
+    override fun clearCache() = productCache.evictAll()
 }

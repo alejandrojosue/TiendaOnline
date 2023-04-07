@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 class HomeActivity : AppCompatActivity() {
+    private val products = ProductsRepository()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -21,14 +22,15 @@ class HomeActivity : AppCompatActivity() {
             if(it[0] != null){
                 runOnUiThread{
                     tv.setText(it[0].toString())
-//                    btn.performClick()
+                    products.clearCache()
+                    btn.performClick()
                 }
             }
         }
         mSocket.emit("bla", "valor")
     }
     private fun events(){
-        val products = ProductsRepository()
+
         btn.setOnClickListener{
             try {
                 GlobalScope.launch {
