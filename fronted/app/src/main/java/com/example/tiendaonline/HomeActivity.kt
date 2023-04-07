@@ -86,7 +86,7 @@ class HomeActivity : AppCompatActivity() {
             }
             adapter.updateList(productFiltered!!)
     }
-    fun onItemClick(productsClient: ProductsClient){
+    private fun onItemClick(productsClient: ProductsClient){
         Toast.makeText(this, productsClient.description,Toast.LENGTH_LONG).show()
     }
 }
