@@ -7,6 +7,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ILoginRepository {
-    @POST("auth/local")
+    @POST("/auth/local")
     fun sendReq(@Body requestModel: LoginRequest) : Call<LoginResponse>
 }
