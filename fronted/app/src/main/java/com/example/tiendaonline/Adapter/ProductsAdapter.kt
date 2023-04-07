@@ -3,11 +3,12 @@ package com.example.tiendaonline.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tiendaonline.Models.V3.ProductClient
+import com.example.tiendaonline.Models.ProductInformation.ProductsClient
 import com.example.tiendaonline.R
 
 class ProductsAdapter(
-    private val productList:List<ProductClient>
+    private var productsList:List<ProductsClient>,
+    private val onClickListener:(ProductsClient) -> Unit
 ): RecyclerView.Adapter<ProductsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -16,10 +17,15 @@ class ProductsAdapter(
     }
 
     //son la cantidad de items que mostrará el RecyclerView.Adapter<T>()
-    override fun getItemCount(): Int = productList.size
+    override fun getItemCount(): Int = productsList.size
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val item = productsList?.get(position)
+        holder.render(item!!, onClickListener)
     }
 
+    fun updateList(_productsList:List<ProductsClient>){
+        this.productsList = _productsList
+        notifyDataSetChanged()
+    }
 }

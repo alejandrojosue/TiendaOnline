@@ -11,14 +11,13 @@ module.exports = {
         const { result, params } = event;
 
         // do something to the result;
-        strapi.io.emit("products", "create new");
-
+        // strapi.io.emit("products", "create new");
     },
 
     async afterUpdate(event) {
         const { result, params } = event;
         strapi.io.emit("products", "update");
-        strapi.io.emit("test", result);
+        // strapi.io.emit("test", result);
     },
 
     async afterFindMany(e) {

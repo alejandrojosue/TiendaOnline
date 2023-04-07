@@ -5,9 +5,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ProductController {
-
-
-
     private suspend fun getProducts(token:String){
 
         val products = ProductsRepository().getAll()

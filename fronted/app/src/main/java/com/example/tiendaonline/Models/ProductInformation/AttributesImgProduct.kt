@@ -10,11 +10,11 @@ data class AttributesImgProduct(
     val height: Int?,
 //    val mime: String?,
     val name: String?,
-//    val previewUrl: String?,
-//    val provider: String?,
+    val previewUrl: String?,
+    val provider: String?,
 //    val provider_metadata: String?,
     val size: Double?,
 //    val updatedAt: String?,
-//    val url: String?,
+    val url: String?,
     val width: Int?
 )

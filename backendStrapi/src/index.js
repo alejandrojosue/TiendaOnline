@@ -26,7 +26,6 @@ module.exports = {
     io.on('connection', function (socket) {
       console.log(socket.io);
       io.emit("test", "test hellow there");
-      console.log("red the code");
       io.on('bla', data => {
         console.log(data)
       })

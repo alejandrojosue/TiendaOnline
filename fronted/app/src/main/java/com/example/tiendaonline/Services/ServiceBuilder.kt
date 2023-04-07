@@ -22,7 +22,8 @@ object ServiceBuilder {
     }
 
     // Android no maneja loalchost, usar esta ip es lo que se indica en la documentación oficial
-    private const val localhost = "10.0.2.2"
+    private const val port = "1337"
+    const val localhost = "http://10.0.2.2:$port"
 
     private lateinit var instance: ServiceBuilder
     fun<T> buildService(service: Class<T>): T{
@@ -36,7 +37,7 @@ object ServiceBuilder {
         }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://$localhost:1337/") // change this IP for testing by your actual machine IP
+            .baseUrl("$localhost") // change this IP for testing by your actual machine IP
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

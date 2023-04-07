@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding{
+        enabled = true
+    }
 }
 
 dependencies {
@@ -49,9 +52,6 @@ dependencies {
     // retrofit para httpClient
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    //Importar un objeto tipo Simple que es lo mismo que IEnumerable
-    //implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
-    // Usar cache
-    //implementation 'com.github.VictorChow:RetrofitCache:latest-version'
-
+    // repositorio de git que nos permite implementar las imágenes
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 }
