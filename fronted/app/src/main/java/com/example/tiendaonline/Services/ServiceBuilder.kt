@@ -25,9 +25,6 @@ object ServiceBuilder {
     private const val localhost = "10.0.2.2"
 
     private lateinit var instance: ServiceBuilder
-
-
-
     fun<T> buildService(service: Class<T>): T{
         lateinit var client:OkHttpClient
         if(this.token.contains(".")) {

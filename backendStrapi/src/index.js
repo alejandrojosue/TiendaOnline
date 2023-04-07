@@ -28,7 +28,7 @@ module.exports = {
       io.emit("test", "test hellow there");
       console.log("red the code");
       io.on('bla', data => {
-        // do something with data
+        console.log(data)
       })
     })
 

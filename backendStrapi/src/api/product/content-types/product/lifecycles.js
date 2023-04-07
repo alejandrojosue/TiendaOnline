@@ -18,5 +18,11 @@ module.exports = {
     async afterUpdate(event) {
         const { result, params } = event;
         strapi.io.emit("products", "update");
+        strapi.io.emit("test", result);
+    },
+
+    async afterFindMany(e) {
+        const { result, params } = e;
+        strapi.io.emit("products", `get`);
     }
 };

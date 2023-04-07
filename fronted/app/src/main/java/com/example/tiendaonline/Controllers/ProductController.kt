@@ -9,6 +9,7 @@ class ProductController {
 
 
     private suspend fun getProducts(token:String){
+
         val products = ProductsRepository().getAll()
 
         products.onSuccess { product->
@@ -18,34 +19,6 @@ class ProductController {
 //                product
 //            )
         }
-
-
-
-
-
-
-    //            ServiceBuilder.token = token
-//        val iProducts =  ServiceBuilder.buildService(IProducts::class.java)
-//            iProducts.getAll().enqueue(object : Callback<List<Product>> {
-//                override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
-//                    if (response.isSuccessful) {
-//                        val products = response.body()
-//                        products?.forEach{
-//                           println(it)//imprimir productos
-//                        }
-//                           // Maneja la respuesta aquí
-//                        } else {
-//                           // Maneja el error aquí
-//                           println("${response.code()}")
-//                        }
-//                    }
-//                override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-//                    // Maneja el error aquí
-//                }
-//        })
-
-
-
 
 
     }
