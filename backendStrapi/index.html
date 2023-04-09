@@ -24,13 +24,15 @@
             console.log(data)
         })
 
-        // socket.on('connected', data => {
+        // socket.on('bla', data => {
         //     console.log(data)
         // })
 
         socket.on("products", data => {
-            console.log(data, "products")
+            console.log(data)
         })
+
+        socket.emit("bla", "mensaje bla");
     </script>
 </body>
 

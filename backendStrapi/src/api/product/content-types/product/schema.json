@@ -20,7 +20,7 @@
     },
     "Description": {
       "type": "string",
-      "maxLength": 40,
+      "maxLength": 120,
       "required": true,
       "minLength": 1
     },
@@ -45,6 +45,19 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::color.color"
+    },
+    "SKU": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 12,
+      "minLength": 8
+    },
+    "Quantity": {
+      "type": "integer",
+      "min": 0,
+      "default": 1,
+      "required": true
     }
   }
 }

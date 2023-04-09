@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Date": {
+      "type": "datetime"
+    },
+    "ClientName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 40
+    },
+    "Details": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order-details.details"
+    }
+  }
+}

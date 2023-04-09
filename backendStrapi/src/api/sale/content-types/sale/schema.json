@@ -4,7 +4,8 @@
   "info": {
     "singularName": "sale",
     "pluralName": "sales",
-    "displayName": "Sale"
+    "displayName": "Sale",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +29,15 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::payment-method.payment-method"
+    },
+    "DeliveryInstructions": {
+      "type": "richtext"
+    },
+    "ClientName": {
+      "type": "string",
+      "required": true,
+      "default": "CF",
+      "maxLength": 40
     }
   }
 }

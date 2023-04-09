@@ -4,7 +4,8 @@
   "info": {
     "singularName": "purchase",
     "pluralName": "purchases",
-    "displayName": "Purchase"
+    "displayName": "Purchase",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +29,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::payment-method.payment-method"
+    },
+    "Details": {
+      "type": "component",
+      "repeatable": true,
+      "component": "purchase-details.details"
     }
   }
 }

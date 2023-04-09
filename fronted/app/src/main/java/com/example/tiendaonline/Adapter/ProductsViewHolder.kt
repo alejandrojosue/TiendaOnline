@@ -17,6 +17,8 @@ class ProductsViewHolder(view: View):RecyclerView.ViewHolder(view) {
         binding.img.setOnClickListener{
             Toast.makeText(binding.img.context,binding.tvName.text,Toast.LENGTH_LONG).show()
         }
+        binding.tvSKU.setText(productsClient.SKU)
+        binding.tvQuantity.setText(productsClient.Quantity.toString())
         itemView.setOnClickListener{onClickListener(productsClient)}
     }
 }

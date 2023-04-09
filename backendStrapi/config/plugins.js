@@ -1,22 +1,14 @@
 module.exports = ({ env }) => ({
-    // ...
-    "io": {
-        "enabled": true,
-        "config": {
-            "IOServerOptions": {
-                "cors": { "origin": "http://localhost:1337", "methods": ["GET"] },
+    email: {
+        config: {
+            provider: 'sendgrid',
+            providerOptions: {
+                apiKey: env('SENDGRID_API_KEY'),
             },
-            "contentTypes": {
-                "message": "*",
-                "chat": ["create"]
+            settings: {
+                defaultFrom: 'alejandro.diaz@ujcv.edu.hn',
+                defaultReplyTo: 'alejandro.diaz@ujcv.edu.hn',
             },
-            "events": [{
-                "name": "connection",
-                "handler": ({ strapi }, socket) => {
-                    strapi.log.info(`[io] new connection with id ${socket.id}`);
-                },
-            },]
         },
     },
-    // ...
 });

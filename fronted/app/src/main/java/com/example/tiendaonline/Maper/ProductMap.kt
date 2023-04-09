@@ -21,12 +21,15 @@ class ProductMap {
 
         fun mapearV4(data: DataProduct?): ProductsClient {
             return ProductsClient(
+                id = data?.id,
                 Name = data?.attributes?.Name,
                 Price = data?.attributes?.Price,
                 subcategory = data?.attributes?.subcategory,
                 color = data?.attributes?.color,
                 description = data?.attributes?.Description,
-                img = data?.attributes?.Img
+                img = data?.attributes?.Img,
+                SKU = data?.attributes?.SKU,
+                Quantity = data?.attributes?.Quantity,
             )
         }
     }

@@ -24,7 +24,7 @@ module.exports = {
     })
     strapi.io = io
     io.on('connection', function (socket) {
-      console.log(socket.io);
+      console.log("run socket");
       io.emit("test", "test hellow there");
       io.on('bla', data => {
         console.log(data)

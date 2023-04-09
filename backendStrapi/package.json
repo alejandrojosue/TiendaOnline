@@ -13,10 +13,10 @@
     "@strapi/plugin-documentation": "^4.9.0",
     "@strapi/plugin-i18n": "4.9.0",
     "@strapi/plugin-users-permissions": "4.9.0",
+    "@strapi/provider-email-sendgrid": "^4.9.0",
     "@strapi/strapi": "4.9.0",
     "mysql": "2.18.1",
     "socket.io": "^4.6.1",
-    "strapi-plugin-graphs-builder": "^1.0.0",
     "strapi-plugin-io": "^1.1.4"
   },
   "author": {

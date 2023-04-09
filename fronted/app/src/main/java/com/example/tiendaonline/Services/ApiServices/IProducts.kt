@@ -7,4 +7,6 @@ import retrofit2.http.GET
 interface IProducts {
     @GET("/api/products?populate=*")
      fun getAll(): Call<Products>
+    @GET("/api/products?populate=*&pagination[limit]=20")
+    fun getLimit(): Call<Products>
 }

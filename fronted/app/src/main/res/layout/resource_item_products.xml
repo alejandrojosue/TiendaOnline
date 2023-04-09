@@ -15,15 +15,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
+    <TextView
+        android:id="@+id/tvSKU"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="BE012341"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
     
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="Name"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSKU"
         app:layout_constraintStart_toEndOf="@+id/img"
-        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/tvPrice"
@@ -39,6 +47,15 @@
         android:layout_height="wrap_content"
         tools:text="Some description of product"
         app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+        app:layout_constraintStart_toEndOf="@+id/img"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/tvQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="200"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
         app:layout_constraintStart_toEndOf="@+id/img"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
