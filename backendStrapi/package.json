@@ -16,8 +16,10 @@
     "@strapi/provider-email-sendgrid": "^4.9.0",
     "@strapi/strapi": "4.9.0",
     "mysql": "2.18.1",
+    "nodemailer": "^6.9.1",
     "socket.io": "^4.6.1",
-    "strapi-plugin-io": "^1.1.4"
+    "strapi-plugin-io": "^1.1.4",
+    "strapi-plugin-populate-deep": "^2.0.0"
   },
   "author": {
     "name": "A Strapi developer"

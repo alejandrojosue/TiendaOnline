@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Date": {
-      "type": "datetime"
-    },
     "ClientName": {
       "type": "string",
       "required": true,
@@ -24,6 +21,10 @@
       "type": "component",
       "repeatable": true,
       "component": "order-details.details"
+    },
+    "Amount": {
+      "type": "float",
+      "required": true
     }
   }
 }

@@ -26,24 +26,6 @@ module.exports = {
             publishedAt: result.publishedAt
         }
         strapi.io.emit("products", result);
-        // strapi.io.emit("test", result);
-        try {
-            await strapi.plugins['email'].services.email.send({
-                to: 'alejandro.diaz@ujcv.edu.hn',
-                from: 'alejandro.diaz@ujcv.edu.hn', // e.g. single sender verification in SendGrid
-                // cc: 'valid email address',
-                // bcc: 'valid email address',
-                // replyTo: 'valid email address',
-                subject: 'The Strapi Email plugin worked successfully',
-                text: `${result.Description}`, // Replace with a valid field ID
-                html: '<h1>Hello world!</h1>',
-
-            })
-        } catch (err) {
-            console.log(err);
-        }
-
-
     },
 
     async afterFindMany(e) {

@@ -13,6 +13,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::product.product"
+    },
+    "Price": {
+      "type": "float",
+      "required": true
     }
   }
 }

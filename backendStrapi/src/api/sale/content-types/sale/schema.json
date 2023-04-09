@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Date": {
-      "type": "datetime"
-    },
     "users_permissions_user": {
       "type": "relation",
       "relation": "oneToOne",
@@ -38,6 +35,10 @@
       "required": true,
       "default": "CF",
       "maxLength": 40
+    },
+    "Amount": {
+      "type": "float",
+      "required": true
     }
   }
 }

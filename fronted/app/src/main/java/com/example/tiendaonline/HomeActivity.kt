@@ -20,21 +20,26 @@ import org.json.JSONObject
 class HomeActivity : AppCompatActivity() {
     private val products = ProductsRepository()
     private lateinit var adapter:ProductsAdapter
-    private lateinit var myList:MutableList<ProductsClient>
+    lateinit var myList:MutableList<ProductsClient>
     private lateinit var binding:ActivityHomeBinding
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         title = "Home"
-        val conexionInfo = ((getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager)).activeNetworkInfo
+        if(conexion()){
+
+        }
         events()
         sockets()
     }
+    fun conexion():Boolean{
+        val conexionInfo = ((getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager)).activeNetworkInfo
+        return (conexionInfo!=null && conexionInfo.isConnected)
+    }
     private fun events(){
         btn.setOnClickListener {
-            val conexionInfo = ((getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager)).activeNetworkInfo
-            if(conexionInfo!=null && conexionInfo.isConnected){
+            if(conexion()){
                 mostrarProductos()
             }else{
                 Toast.makeText(this, "SIN INTERNET",Toast.LENGTH_LONG).show()
@@ -44,7 +49,12 @@ class HomeActivity : AppCompatActivity() {
             if(rvProducts.size > 0)  mostrarProductos(it.toString())
             if(etSearch.text.length == 0)  mostrarProductos()
         }
-        btn2.setOnClickListener{startActivity(Intent(this,AuthActivityController::class.java))}
+        btn2.setOnClickListener{
+            GlobalScope.launch {
+                products.updateQuantity(1, 1)
+            }
+            //startActivity(Intent(this,AuthActivityController::class.java))
+        }
     }
     private fun mostrarProductos(productFilter:String = ""){
             try {
@@ -61,7 +71,6 @@ class HomeActivity : AppCompatActivity() {
                         }
                     }else{
                         println("Error failed: ${res.exceptionOrNull()}")
-//                    startActivity(Intent(this@HomeActivity,AuthActivityController::class.java))
                     }
                 }
             } catch (e: Exception) {
@@ -84,7 +93,7 @@ class HomeActivity : AppCompatActivity() {
                         val productUpdate = ProductsClient(response.getInt("id"),response.getString("SKU"),response.getString("Name"),response.getDouble("Price"),response.getInt("Quantity"),myList.get(x).subcategory,myList.get(x).color,response.getString("Description"),myList.get(x).img)
                         myList.set(x,productUpdate)
                         mostrarProductos()
-                        tv.setText("${response.get("publishedAt")}${response.get("Name")}${response.get("Description")}${response.get("Price")}")
+                        tv.setText("${response.get("publishedAt")}${response.get("Name")}${response.get("Description")}${response.get("Price")}${response.getInt("Quantity")}")
                     }catch (e:java.lang.Exception){
                         println(e.message)
                     }

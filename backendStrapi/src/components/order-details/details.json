@@ -9,9 +9,6 @@
     "Quantity": {
       "type": "decimal"
     },
-    "Price": {
-      "type": "decimal"
-    },
     "product": {
       "type": "relation",
       "relation": "oneToOne",
