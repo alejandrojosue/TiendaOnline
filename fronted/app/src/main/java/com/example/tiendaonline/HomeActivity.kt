@@ -9,8 +9,13 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tiendaonline.Adapter.ProductsAdapter
 import com.example.tiendaonline.Controllers.AuthActivityController
+import com.example.tiendaonline.Models.Orders.Order
+import com.example.tiendaonline.Models.Orders.OrderData
+import com.example.tiendaonline.Models.Orders.OrderDetail
+import com.example.tiendaonline.Models.Orders.OrderProduct
 import com.example.tiendaonline.Models.ProductInformation.ProductsClient
 import com.example.tiendaonline.Network.SocketIOManager
+import com.example.tiendaonline.Repository.OrdersRepository
 import com.example.tiendaonline.Repository.ProductsRepository
 import com.example.tiendaonline.databinding.ActivityHomeBinding
 import kotlinx.android.synthetic.main.activity_home.*
@@ -19,18 +24,19 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 class HomeActivity : AppCompatActivity() {
     private val products = ProductsRepository()
+    private var orderDetailMutableList = mutableListOf<OrderDetail>()
     private lateinit var adapter:ProductsAdapter
     lateinit var myList:MutableList<ProductsClient>
     private lateinit var binding:ActivityHomeBinding
+    var amount:Double = 0.0
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         title = "Home"
         if(conexion()){
-
+            events()
         }
-        events()
         sockets()
     }
     fun conexion():Boolean{
@@ -50,11 +56,27 @@ class HomeActivity : AppCompatActivity() {
             if(etSearch.text.length == 0)  mostrarProductos()
         }
         btn2.setOnClickListener{
-            GlobalScope.launch {
-                products.updateQuantity(1, 1)
+            if(orderDetailMutableList.size>0){
+                crearOrden("Melissa")
+            }else{
+                Toast.makeText(this, "No ha comprado nada",Toast.LENGTH_LONG).show()
             }
+            //products.updateQuantity(1, 1)
+//            crearOrden()
             //startActivity(Intent(this,AuthActivityController::class.java))
         }
+    }
+
+    fun addListado(quantity:Int,productId:Int) = orderDetailMutableList.add(OrderDetail(quantity, OrderProduct(productId)))
+    fun removeProductoListado(id:Int) = orderDetailMutableList.remove(orderDetailMutableList.single{it.product.id == id}  )
+    private fun crearOrden(clientName:String){
+        val orderRepository = OrdersRepository()
+        GlobalScope.launch {
+            orderRepository.createOrder(Order(OrderData(amount,clientName,orderDetailMutableList.toList())))
+            orderDetailMutableList.clear()
+            amount=0.0
+        }
+
     }
     private fun mostrarProductos(productFilter:String = ""){
             try {
@@ -119,6 +141,13 @@ class HomeActivity : AppCompatActivity() {
         }catch (e:java.lang.Exception){}
     }
     private fun onItemClick(productsClient: ProductsClient){
-        Toast.makeText(this, productsClient.description,Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, productsClient.id.toString(),Toast.LENGTH_LONG).show()
+        if(productsClient.Quantity!!>0){
+            addListado(1,productsClient.id!!)
+            amount+=productsClient.Price!!
+            GlobalScope.launch { products.updateQuantity(productsClient.id!!, productsClient.Quantity!!-1) }
+        }else{
+            Toast.makeText(this, "El producto ${productsClient.Name} está agotado!", Toast.LENGTH_LONG).show()
+        }
     }
 }

@@ -25,7 +25,7 @@
       "minLength": 1
     },
     "Price": {
-      "type": "float",
+      "type": "decimal",
       "required": true
     },
     "subcategory": {

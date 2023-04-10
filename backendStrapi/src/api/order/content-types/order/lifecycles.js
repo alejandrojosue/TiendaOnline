@@ -1,5 +1,5 @@
 module.exports = {
-    afterCreate(event) {
+    async afterCreate(event) {
         const { result } = event;
 
         const nodemailer = require('nodemailer');
@@ -18,56 +18,47 @@ module.exports = {
                 subject: 'Reporte de compra',
                 text: '',
                 html: `
-                <div style="padding:0px 20px 20px; width: 240px; font-family: sans-serif; border: 1px solid #E5E7E9; box-shadow: 1px 1px 10px #999;">
-        <div style="background-color: #fff; width: 100%; border-bottom: 1px dashed #888;">
-            <center>
-                <h3 style="width:180px;color: #566573; border: 2px solid #566573; display: flex;">
-                    <span style="border: 1px solid #888; width: 100%; margin: 2px; padding: 1px;">Tienda Muebles</span>
-                </h3>
-            </center>
+                <div style="font-family: sans-serif; border: 1px solid #444; width: 500px; padding: 10px 10px 20px; position: absolute;">
+        <div style="width: 600px;">
+            <span style="margin-left: 5px;">
+                <b style="color: #3498DB; font-size: 2em;">Orden de Compra </b>
+                &nbsp;&nbsp;
+                <b style="background-color: #D5DBDB; padding: 5px; border-radius: 5px; font-size: 1.3em;">No. ${result.id}</b>
+            </span>
+
         </div>
-        <br>
-        <div style="color:#888; font-size: .9em; border-bottom: 1px dashed #888;">
-            <table>
-                <tr>
-                    <td style="font-weight: bold;">
-                        Cliente:
-                    </td>
-                    <td>${result.ClientName}</td>
-                </tr>
-                <tr>
-                    <td style="font-weight: bold;">
-                        Fecha:
-                    </td>
-                    <td>${result.createdAt}</td>
-                </tr>
-                <tr>
-                    <td style="font-weight: bold;">
-                        Orden #:
-                    </td>
-                    <td>${result.id}</td>
-                </tr>
-            </table>
-            <br>
-        </div>
-        <br>
-        <div>
-            <strong>Monto Total:</strong> L. ${result.Amount}
+        <div style="padding-top: 0px;">
+            <p style="padding: 0px 10px; color:#888; display: flex;">
+                <b style="width: 70px;">
+                    Cliente: </b>&nbsp;
+                <span style="width: 370px; padding-bottom: 2px; border-bottom: 1px solid #888;">${result.ClientName}</span>
+            </p>
+            <p style="padding: 0px 10px; color:#888; display: flex;">
+                <b style="width: 70px;">
+                Fecha:
+                </b>&nbsp;
+                <span style="width: 370px; padding-bottom: 2px; border-bottom: 1px solid #888;">${result.createdAt}</span>
+            </p>
+            <p style="padding: 0px 10px; color:#888; display: flex;">
+                <b style="width: 70px;">
+                    Total:
+                </b>&nbsp;
+                <span style="width: 370px; padding-bottom: 2px; border-bottom: 1px solid #888;">L. ${result.Amount}</span>
+            </p>
         </div>
     </div>
                 `
             }
             try {
                 const transport = nodemailer.createTransport(config);
-                const info = await transport.sendMail(mensaje);
-                console.log(info)
+                await transport.sendMail(mensaje);
             } catch (error) {
                 console.warn(error)
             }
         }
         enviar();
     },
-    afterUpdate(event) {
+    async afterUpdate(event) {
         const { result, params } = event;
     },
 }

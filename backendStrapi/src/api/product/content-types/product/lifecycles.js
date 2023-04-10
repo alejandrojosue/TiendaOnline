@@ -1,5 +1,5 @@
 module.exports = {
-    beforeCreate(event) {
+    async beforeCreate(event) {
         const { data, where, select, populate } = event.params;
 
         // let's do a 20% discount everytime
@@ -7,7 +7,7 @@ module.exports = {
 
     },
 
-    afterCreate(event) {
+    async afterCreate(event) {
         const { result, params } = event;
 
         // do something to the result;

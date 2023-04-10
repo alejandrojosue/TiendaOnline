@@ -23,7 +23,7 @@
       "component": "order-details.details"
     },
     "Amount": {
-      "type": "float",
+      "type": "decimal",
       "required": true
     }
   }

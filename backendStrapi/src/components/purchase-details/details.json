@@ -1,7 +1,8 @@
 {
   "collectionName": "components_purchase_details_details",
   "info": {
-    "displayName": "Details"
+    "displayName": "Details",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -11,7 +12,7 @@
       "target": "api::product.product"
     },
     "Unit_Price": {
-      "type": "float"
+      "type": "decimal"
     },
     "Quantity": {
       "type": "integer"
