@@ -9,7 +9,7 @@ module.exports = {
                 port: 587,
                 auth: {
                     user: 'sistemaoperativoindependiente@gmail.com',
-                    pass: 'biyvxblpoqqutson'
+                    pass: process.env.GMAIL_KEY //'biyvxblpoqqutson'
                 }
             }
             const mensaje = {

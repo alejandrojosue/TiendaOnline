@@ -8,20 +8,21 @@ import java.net.URISyntaxException
 object SocketIOManager {
     lateinit var mSocket: Socket
     @Synchronized
-    fun setSocket() {
+    fun init(){
         try {
-// This will allow your Android Emulator and physical device at your home to connect to the server
+            // This will allow your Android Emulator and physical device at your home
+            // to connect to the server
             val i = IO.Options()
             i.path = "/socket/v1" //Es el que se está usando en strapi
             mSocket = IO.socket(localhost,i)
-        } catch (e: URISyntaxException) {
-
-        }
+            mSocket.connect()
+        } catch (e: URISyntaxException) {}
     }
     @Synchronized
-    fun getSocket(): Socket = mSocket
-    @Synchronized
-    fun establishConnection() = mSocket.connect()
+    fun getSocket(): Socket {
+        init()
+        return mSocket
+    }
     @Synchronized
     fun closeConnection() = mSocket.disconnect()
 }
