@@ -27,7 +27,8 @@ open class AuthActivityController : AppCompatActivity() {
         title = "Login"
 
         btn.setOnClickListener{
-            startActivity(Intent(this,HomeActivity::class.java))
+            //startActivity(Intent(this,HomeActivity::class.java))
+            finish()
         }
         buttonLogin.setOnClickListener {
 

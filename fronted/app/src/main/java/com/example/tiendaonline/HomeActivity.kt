@@ -1,5 +1,7 @@
 package com.example.tiendaonline
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,11 +21,13 @@ import com.example.tiendaonline.Network.SocketIOManager
 import com.example.tiendaonline.Repository.OrdersRepository
 import com.example.tiendaonline.Repository.ProductsRepository
 import com.example.tiendaonline.databinding.ActivityHomeBinding
+import com.example.tiendaonline.util.DeviceUtils
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 class HomeActivity : AppCompatActivity() {
+    //private val isTablet = DeviceUtils.isTablet(this)
     private val products = ProductsRepository()
     private  val orderRepository = OrdersRepository()
     private var orderDetailMutableList = mutableListOf<OrderDetail>()
@@ -31,17 +35,31 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var adapter:ProductsAdapter
     private lateinit var binding:ActivityHomeBinding
     private val productFilter = ProductFilter()
-
     var amount:Double = 0.0
+    private var columsNumber = 1
+    //La cantidad de columnas a mostrar
+    private var manager = GridLayoutManager(this,columsNumber)
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         title = "Home"
+         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
         if(conexion()){
             events()
         }
         sockets()
+    }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // La pantalla está en modo horizontal
+            manager = GridLayoutManager(this,2)
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // La pantalla está en modo vertical
+            manager = GridLayoutManager(this,columsNumber)
+        }
+        binding.rvProducts.layoutManager = manager
     }
     fun conexion():Boolean{
         val conexionInfo = ((getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager)).activeNetworkInfo
@@ -67,7 +85,9 @@ class HomeActivity : AppCompatActivity() {
             }
             //products.updateQuantity(1, 1)
 //            crearOrden()
-            //startActivity(Intent(this,AuthActivityController::class.java))
+        }
+        btn3.setOnClickListener{
+            startActivity(Intent(this,AuthActivityController::class.java))
         }
     }
     fun addListado(quantity:Int,productId:Int) = orderDetailMutableList.add(OrderDetail(quantity, OrderProduct(productId)))
@@ -134,9 +154,6 @@ class HomeActivity : AppCompatActivity() {
     }
     private fun initRecycleview(){
         adapter = ProductsAdapter(myList) { productsClient -> onItemClick(productsClient) /*lambda*/ }
-        //crear separación de items
-        val columsNumber = 1
-        val manager = GridLayoutManager(this,columsNumber) //La cantidad de columnas a mostrar
         binding.rvProducts.layoutManager = manager
         binding.rvProducts.adapter = adapter
     }
