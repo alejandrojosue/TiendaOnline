@@ -89,6 +89,11 @@ class HomeActivity : AppCompatActivity() {
         btn3.setOnClickListener{
             startActivity(Intent(this,AuthActivityController::class.java))
         }
+        //refrescar el recycleview
+        binding.swipe.setOnRefreshListener {
+            mostrarProductos()
+            binding.swipe.isRefreshing = false
+        }
     }
     fun addListado(quantity:Int,productId:Int) = orderDetailMutableList.add(OrderDetail(quantity, OrderProduct(productId)))
     fun removeProductoListado(id:Int) = orderDetailMutableList.remove(orderDetailMutableList.single{it.product.id == id}  )
