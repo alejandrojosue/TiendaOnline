@@ -6,6 +6,9 @@ import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.core.view.isVisible
 import androidx.core.view.size
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
@@ -44,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
         binding =  ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         title = "Home"
-         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
         if(conexion()){
             events()
         }
@@ -94,6 +97,16 @@ class HomeActivity : AppCompatActivity() {
             mostrarProductos()
             binding.swipe.isRefreshing = false
         }
+        mode.setOnCheckedChangeListener {
+                _, changeState ->
+            if(changeState){
+//                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+//                delegate.applyDayNight()
+            }else{
+//                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+//                delegate.applyDayNight()
+            }
+        }
     }
     fun addListado(quantity:Int,productId:Int) = orderDetailMutableList.add(OrderDetail(quantity, OrderProduct(productId)))
     fun removeProductoListado(id:Int) = orderDetailMutableList.remove(orderDetailMutableList.single{it.product.id == id}  )
@@ -116,6 +129,7 @@ class HomeActivity : AppCompatActivity() {
                             }else{
                                 adapter.updateList(ProductFilter().filterProduct(productFilter, myList))
                             }
+                            isLoading.isVisible = false
                         }
                     }else{
                         println("Error failed: ${res.exceptionOrNull()}")
@@ -163,12 +177,12 @@ class HomeActivity : AppCompatActivity() {
         binding.rvProducts.adapter = adapter
     }
     private fun onItemClick(productsClient: ProductsClient){
-        if(productsClient.Quantity!!>0){
-            addListado(1,productsClient.id!!)
-            amount+=productsClient.Price!!
-            GlobalScope.launch { products.updateQuantity(productsClient.id!!, productsClient.Quantity!!-1) }
-        }else{
-            Toast.makeText(this, "El producto ${productsClient.Name} está agotado!", Toast.LENGTH_LONG).show()
-        }
+//        if(productsClient.Quantity!!>0){
+//            addListado(1,productsClient.id!!)
+//            amount+=productsClient.Price!!
+//            GlobalScope.launch { products.updateQuantity(productsClient.id!!, productsClient.Quantity!!-1) }
+//        }else{
+//            Toast.makeText(this, "El producto ${productsClient.Name} está agotado!", Toast.LENGTH_LONG).show()
+//        }
     }
 }

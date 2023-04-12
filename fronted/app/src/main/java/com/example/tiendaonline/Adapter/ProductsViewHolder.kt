@@ -12,7 +12,7 @@ class ProductsViewHolder(view: View):RecyclerView.ViewHolder(view) {
         binding.tvName.setText(productsClient.Name)
         binding.tvPrice.setText("L. ${productsClient.Price.toString()}")
         binding.tvDescription.setText(productsClient.description)
-        var url = "${ServiceBuilder.localhost}${productsClient.img?.data?.attributes?.url}"
+        var url = "${ServiceBuilder.LOCALHOST}${productsClient.img?.data?.attributes?.url}"
         Glide.with(binding.img).load(url).into(binding.img)
         binding.img.setOnClickListener{
             Toast.makeText(binding.img.context,binding.tvName.text,Toast.LENGTH_LONG).show()

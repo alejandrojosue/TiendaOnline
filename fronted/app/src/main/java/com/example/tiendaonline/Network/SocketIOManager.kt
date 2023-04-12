@@ -1,6 +1,6 @@
 package com.example.tiendaonline.Network
 
-import com.example.tiendaonline.Services.ServiceBuilder.localhost
+import com.example.tiendaonline.Services.ServiceBuilder.LOCALHOST
 import io.socket.client.IO
 import io.socket.client.Socket
 import java.net.URISyntaxException
@@ -14,7 +14,7 @@ object SocketIOManager {
             // to connect to the server
             val i = IO.Options()
             i.path = "/socket/v1" //Es el que se está usando en strapi
-            mSocket = IO.socket(localhost,i)
+            mSocket = IO.socket(LOCALHOST,i)
             mSocket.connect()
         } catch (e: URISyntaxException) {}
     }

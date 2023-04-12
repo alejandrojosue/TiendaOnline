@@ -1,12 +1,10 @@
 package com.example.tiendaonline.Services
 
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 object ServiceBuilder {
     var token:String = ""
     private val authInterceptor = object : Interceptor {
@@ -22,10 +20,10 @@ object ServiceBuilder {
     }
 
     // Android no maneja loalchost, usar esta ip es lo que se indica en la documentación oficial
-    private const val port = "1337"
-    const val local = "http://10.0.2.2:$port"
-    const val web = "https://tiendamuebles.onrender.com"
-    const val localhost = local
+    private const val PORT = "1337"
+    const val LOCAL = "http://10.0.2.2:$PORT"
+    const val WEB = "https://tiendamuebles.onrender.com"
+    const val LOCALHOST = LOCAL
 
 
     private lateinit var instance: ServiceBuilder
@@ -40,7 +38,7 @@ object ServiceBuilder {
         }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("$localhost") // change this IP for testing by your actual machine IP
+            .baseUrl("$LOCALHOST") // change this IP for testing by your actual machine IP
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
