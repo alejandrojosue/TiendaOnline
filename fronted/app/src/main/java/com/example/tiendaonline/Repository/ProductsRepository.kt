@@ -32,7 +32,7 @@ class ProductsRepository() :IProductsRepository {
                     //response devuelve un Product, lo mapeamos para que devuelva un ProductCliente
                     //ponemos valores en la caché
 //                    productCache.put(1,response.body()?.map { ProductMap.mapearV3(it) })
-                    productListCache.put(1,(response.body()?.data)?.map { ProductMap.mapearV4(it) } as MutableList)
+                    productListCache.put(1,(response.body()?.data)!!.map { ProductMap.mapearV4(it) } as MutableList)
                     Result.success(productListCache[1])
                 }else{
                     Result.failure(Exception(response.message()))

@@ -15,16 +15,22 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tiendaonline.Adapter.ProductsAdapter
 import com.example.tiendaonline.Controllers.AuthActivityController
 import com.example.tiendaonline.Filter.ProductFilter
+import com.example.tiendaonline.Filter.SubcategoryFilter
+import com.example.tiendaonline.Models.Categories.CategoryClient
 import com.example.tiendaonline.Models.Orders.Order
 import com.example.tiendaonline.Models.Orders.OrderData
 import com.example.tiendaonline.Models.Orders.OrderDetail
 import com.example.tiendaonline.Models.Orders.OrderProduct
 import com.example.tiendaonline.Models.ProductInformation.ProductsClient
+import com.example.tiendaonline.Models.Subcategories.SubcategoriesClient
 import com.example.tiendaonline.Network.SocketIOManager
+import com.example.tiendaonline.Repository.CategoriesRepository
 import com.example.tiendaonline.Repository.OrdersRepository
 import com.example.tiendaonline.Repository.ProductsRepository
+import com.example.tiendaonline.Repository.SubcategoriesRepository
 import com.example.tiendaonline.databinding.ActivityHomeBinding
 import com.example.tiendaonline.util.DeviceUtils
+import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -33,11 +39,16 @@ class HomeActivity : AppCompatActivity() {
     //private val isTablet = DeviceUtils.isTablet(this)
     private val products = ProductsRepository()
     private  val orderRepository = OrdersRepository()
+    private val categoriesRepository = CategoriesRepository()
+    private val subcategoriesRepository = SubcategoriesRepository()
     private var orderDetailMutableList = mutableListOf<OrderDetail>()
     lateinit var myList:MutableList<ProductsClient>
+    lateinit var myListCategories: List<CategoryClient>
+    lateinit var myListSubcategories: List<SubcategoriesClient>
     private lateinit var adapter:ProductsAdapter
     private lateinit var binding:ActivityHomeBinding
     private val productFilter = ProductFilter()
+    private val subcategoryFilter = SubcategoryFilter()
     var amount:Double = 0.0
     private var columsNumber = 1
     //La cantidad de columnas a mostrar
@@ -69,6 +80,23 @@ class HomeActivity : AppCompatActivity() {
         return (conexionInfo!=null && conexionInfo.isConnected)
     }
     private fun events(){
+        mostrarProductos()
+        mostrarCategorias()
+        mostrarSubcategorias()
+
+        chipGroup.setOnCheckedChangeListener{group, checkedId ->
+            val chip = chipGroup.findViewById<Chip>(checkedId)
+            try{
+                if(chip.isChecked){
+                    filtrarCategoria(chip.text.toString())
+                    Toast.makeText(this, chip.text, 1).show()
+                }
+            }catch (e:Exception){
+                println(e.message)
+            }
+
+        }
+
         btn.setOnClickListener {
             if(conexion()){
                 mostrarProductos()
@@ -105,6 +133,66 @@ class HomeActivity : AppCompatActivity() {
             }else{
 //                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
 //                delegate.applyDayNight()
+            }
+        }
+    }
+
+    private fun filtrarCategoria(categoria:String){
+        val auxList:List<CategoryClient>
+        GlobalScope.launch {
+            val listSubcategorias = subcategoriesRepository.get()
+            if(listSubcategorias.isSuccess){
+                myListSubcategories = listSubcategorias.getOrNull()!!
+
+
+//                try {
+//                    val filtro = subcategoryFilter.filterSubcategory(categoria, myListSubcategories)
+//
+//                    if (filtro.size>0){
+//                        myList =  productFilter.filterProductByCategory(myList, filtro).toMutableList()
+//                        runOnUiThread{
+////                            adapter.updateList(myList)
+////                            adapter.notifyDataSetChanged()
+//                        }
+//
+//                    }else{
+//                        println("No hay coincidencias")
+//                    }
+//
+//                }catch (e:java.lang.Exception){
+//                    println(e.message)
+//                }
+
+
+            }else{
+                println("Todo mal ${listSubcategorias.getOrThrow()}")
+            }
+        }
+    }
+    private fun mostrarSubcategorias(){
+        GlobalScope.launch {
+            val subcategories = subcategoriesRepository.get()
+            if(subcategories.isSuccess){
+                myListSubcategories = subcategories.getOrNull()!!
+
+            }
+        }
+    }
+    private fun mostrarCategorias(){
+        GlobalScope.launch {
+            val categories = categoriesRepository.getCategories()
+            if(categories.isSuccess){
+                myListCategories = categories.getOrNull()!!
+                myListCategories.forEach {category->
+                    runOnUiThread {
+                        val chip = Chip(this@HomeActivity)
+                        chip.setText(category.Name)
+                        chip.isCheckable = true
+                        chipGroup.addView(chip)
+                    }
+                }
+            }else{
+                println("Error")
             }
         }
     }

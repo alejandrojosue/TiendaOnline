@@ -58,4 +58,6 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     // Animación de cargando listado
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    // Menú lateral
+    implementation ''
 }
