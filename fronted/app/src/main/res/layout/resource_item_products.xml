@@ -11,52 +11,122 @@
         android:id="@+id/img"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        tools:background="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
-    <TextView
-        android:id="@+id/tvSKU"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:text="BE012341"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
-    
+
+        tools:background="@drawable/button_shape" />
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:text="Name"
-        app:layout_constraintTop_toBottomOf="@+id/tvSKU"
+        android:layout_height="30dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="NAME"
+        android:paddingLeft="20px"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/poppinssemibold"
         tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Price"
+        android:layout_height="25dp"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
         app:layout_constraintStart_toEndOf="@+id/img"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_marginHorizontal="20px"
+        tools:text="L. 2000.00"
+        android:fontFamily="@font/poppinsregular"
         tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20px"
+        android:layout_marginTop="10px"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+        app:layout_constraintStart_toEndOf="@+id/img">
+        <TextView
+            android:id="@+id/tvSKU"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/baseline_filter_center_focus_24"
+            android:layout_height="22dp"
+            android:textSize="16dp"
+            tools:text="BE012341"
+
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="20px"
+            android:layout_height="22dp"
+            android:textSize="16dp"
+            android:drawableLeft="@drawable/baseline_production_quantity_limits_24"
+            android:fontFamily="@font/poppinsregular"
+            tools:text="200"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+    
+
+
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Some description of product"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+        android:layout_marginHorizontal="20px"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:visibility="gone"
+        android:fontFamily="@font/poppinsregular"
+        tools:text="Some description of product asdasdasdnacascasdklaskldas"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout1"
         app:layout_constraintStart_toEndOf="@+id/img"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/tvQuantity"
+
+    <LinearLayout
+        android:id="@+id/linearlayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="200"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        app:layout_constraintStart_toEndOf="@+id/img"
+        android:layout_marginStart="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/tv_moreInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Más info"
+            android:paddingEnd="20px"
+            android:textColor="@color/secondary_color"
+            android:textStyle="bold"
+            android:background="@null"
+            android:clickable="true"
+            android:textSize="16dp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_shape"
+            android:paddingHorizontal="29dp"
+            android:text="Añadir"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

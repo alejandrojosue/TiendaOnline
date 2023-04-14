@@ -59,6 +59,8 @@
         <EditText
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
+            android:maxLines="1"
+            android:singleLine="true"
             android:layout_height="57dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/button_shape"
@@ -67,12 +69,15 @@
             android:hint="Ingrese su Correo"
             android:paddingLeft="15dp"
             android:textColor="@color/black"
+            android:text=""
             android:textSize="14dp"
             tools:ignore="TextSizeCheck" />
 
         <EditText
             android:id="@+id/edt_confirmPassword"
             android:layout_width="match_parent"
+            android:maxLines="1"
+            android:singleLine="true"
             android:layout_height="57dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/button_shape"
@@ -82,6 +87,7 @@
             android:paddingLeft="15dp"
             android:textColor="@color/black"
             android:textSize="14dp"
+            android:imeOptions="actionDone"
             tools:ignore="TextSizeCheck" />
     </LinearLayout>
 

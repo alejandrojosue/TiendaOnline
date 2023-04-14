@@ -51,6 +51,7 @@ tools:context=".HomeActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.Chip.Filter"
@@ -67,7 +68,9 @@ tools:context=".HomeActivity">
     android:drawableStart="@drawable/baseline_search_24"
     android:drawableLeft="@drawable/baseline_search_24"
     android:drawablePadding="8dp"
+    android:paddingHorizontal="10dp"
     android:hint="Buscar"
+    android:background="@drawable/round_edittext_bg"
     android:imeOptions="actionDone"
     android:inputType="text"
     android:maxLines="1"

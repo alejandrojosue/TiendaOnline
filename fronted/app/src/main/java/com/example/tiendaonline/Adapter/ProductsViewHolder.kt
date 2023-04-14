@@ -15,10 +15,13 @@ class ProductsViewHolder(view: View):RecyclerView.ViewHolder(view) {
         var url = "${ServiceBuilder.LOCALHOST}${productsClient.img?.data?.attributes?.url}"
         Glide.with(binding.img).load(url).into(binding.img)
         binding.img.setOnClickListener{
-            Toast.makeText(binding.img.context,binding.tvName.text,Toast.LENGTH_LONG).show()
+            //Toast.makeText(binding.img.context,url.toString(),Toast.LENGTH_LONG).show()
         }
-        binding.tvSKU.setText(productsClient.SKU)
-        binding.tvQuantity.setText(productsClient.Quantity.toString())
+        binding.tvSKU.setText(" ${productsClient.SKU}")
+        binding.tvQuantity.setText(" ${productsClient.Quantity.toString()}")
+        binding.tvMoreInfo.setOnClickListener{
+            Toast.makeText(binding.tvMoreInfo.context, binding.tvDescription.text,Toast.LENGTH_LONG).show()
+        }
         itemView.setOnClickListener{onClickListener(productsClient)}
     }
 }

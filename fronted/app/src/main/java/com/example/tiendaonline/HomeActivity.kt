@@ -80,19 +80,9 @@ class HomeActivity : AppCompatActivity() {
         mostrarProductos()
         mostrarCategorias()
         mostrarSubcategorias()
+        mostrarSubcategoriasFiltros()
 
-        chipGroup.setOnCheckedChangeListener{group, checkedId ->
-            val chip = chipGroup.findViewById<Chip>(checkedId)
-            try{
-                if(chip.isChecked){
-                    filtrarCategoria(chip.text.toString())
-                    Toast.makeText(this, chip.text, 1).show()
-                }
-            }catch (e:Exception){
-                println(e.message)
-            }
 
-        }
 
         btn.setOnClickListener {
             if(conexion()){
@@ -120,6 +110,7 @@ class HomeActivity : AppCompatActivity() {
         //refrescar el recycleview
         binding.swipe.setOnRefreshListener {
             mostrarProductos()
+            chip_todo.isChecked = true
             binding.swipe.isRefreshing = false
         }
         mode.setOnCheckedChangeListener {
@@ -134,64 +125,61 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun filtrarCategoria(categoria:String){
-        val auxList:List<CategoryClient>
-        GlobalScope.launch {
-            val listSubcategorias = subcategoriesRepository.get()
-            if(listSubcategorias.isSuccess){
-                myListSubcategories = listSubcategorias.getOrNull()!!
-
-
-//                try {
-//                    val filtro = subcategoryFilter.filterSubcategory(categoria, myListSubcategories)
-//
-//                    if (filtro.size>0){
-//                        myList =  productFilter.filterProductByCategory(myList, filtro).toMutableList()
-//                        runOnUiThread{
-////                            adapter.updateList(myList)
-////                            adapter.notifyDataSetChanged()
-//                        }
-//
-//                    }else{
-//                        println("No hay coincidencias")
-//                    }
-//
-//                }catch (e:java.lang.Exception){
-//                    println(e.message)
-//                }
-
-
-            }else{
-                println("Todo mal ${listSubcategorias.getOrThrow()}")
+    private fun mostrarSubcategoriasFiltros() {
+        chipGroup.setOnCheckedChangeListener{group, checkedId ->
+            try{
+                val chip = chipGroup.findViewById<Chip>(checkedId)
+                if(chip.isChecked){
+                    if(chip.text.toString().trim().equals("Todo")) mostrarProductos() else filtrarSubcategoria(chip.text.toString())
+                }
+            }catch (e:Exception){
+                println(e.message)
             }
+
         }
+    }
+
+    private fun filtrarSubcategoria(categoria:String){
+        adapter.updateList(productFilter.filterProductBySubcategory(categoria, myList))
     }
     private fun mostrarSubcategorias(){
         GlobalScope.launch {
             val subcategories = subcategoriesRepository.get()
             if(subcategories.isSuccess){
-                myListSubcategories = subcategories.getOrNull()!!
 
+                if(subcategories.isSuccess){
+                    myListSubcategories = subcategories.getOrNull()!!
+                    myListSubcategories.forEach {category->
+                        runOnUiThread {
+                            val chip = Chip(this@HomeActivity)
+                            chip.setText(category.Name)
+                            chip.isCheckable = true
+                            chipGroup.addView(chip)
+                        }
+                    }
+                }else{
+                    println("Error")
+                }
             }
         }
     }
     private fun mostrarCategorias(){
-        GlobalScope.launch {
-            val categories = categoriesRepository.getCategories()
-            if(categories.isSuccess){
-                myListCategories = categories.getOrNull()!!
-                myListCategories.forEach {category->
-                    runOnUiThread {
-                        val chip = Chip(this@HomeActivity)
-                        chip.setText(category.Name)
-                        chip.isCheckable = true
-                        chipGroup.addView(chip)
-                    }
-                }
-            }else{
-                println("Error")
-            }
-        }
+//        GlobalScope.launch {
+//            val categories = categoriesRepository.getCategories()
+//            if(categories.isSuccess){
+//                myListCategories = categories.getOrNull()!!
+//                myListCategories.forEach {category->
+//                    runOnUiThread {
+//                        val chip = Chip(this@HomeActivity)
+//                        chip.setText(category.Name)
+//                        chip.isCheckable = true
+//                        chipGroup.addView(chip)
+//                    }
+//                }
+//            }else{
+//                println("Error")
+//            }
+//        }
     }
     fun addListado(quantity:Int,productId:Int) = orderDetailMutableList.add(OrderDetail(quantity, OrderProduct(productId)))
     fun removeProductoListado(id:Int) = orderDetailMutableList.remove(orderDetailMutableList.single{it.product.id == id}  )

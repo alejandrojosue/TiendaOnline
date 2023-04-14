@@ -13,6 +13,22 @@ class RegisterActivity : AppCompatActivity() {
 
         btnBackRegisterListener()
         txtLoginListener()
+        btnRegisterListener()
+    }
+
+    private fun btnRegisterListener() {
+        if(edt_email.text.trim().isEmpty()){
+            edt_email.setError("Este campo es obligatorio")
+        }
+        if(edt_fullname.text.trim().isEmpty()){
+            edt_fullname.setError("Este campo es obligatorio")
+        }
+        if(edt_confirmPassword.text.trim().isEmpty()){
+            edt_confirmPassword.setError("Este campo es obligatorio")
+        }
+        if(password.text.trim().isEmpty()) {
+            password.setError("Este campo es obligatorio")
+        }
     }
 
     private fun btnBackRegisterListener() {

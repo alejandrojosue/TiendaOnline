@@ -1,6 +1,7 @@
 package com.example.tiendaonline.Filter
 
 import com.example.tiendaonline.Models.ProductInformation.ProductsClient
+import com.example.tiendaonline.Models.Subcategories.Subcategories
 import com.example.tiendaonline.Models.Subcategories.SubcategoriesClient
 
 class ProductFilter {
@@ -19,5 +20,9 @@ class ProductFilter {
             }
         }
     }
-    fun filterProductBySubcategory(){}
+    fun filterProductBySubcategory(subcategories: String, productMutableList: MutableList<ProductsClient>):List<ProductsClient>{
+        return productMutableList.filter { productsClient ->
+            productsClient.subcategory?.data?.attributes?.Name == subcategories
+        }
+    }
 }

@@ -62,6 +62,8 @@
 
         <EditText
             android:id="@+id/edt_fullname"
+            android:maxLines="1"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:background="@drawable/button_shape"
@@ -75,6 +77,8 @@
 
         <EditText
             android:id="@+id/edt_email"
+            android:maxLines="1"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:layout_marginTop="15dp"
@@ -89,6 +93,8 @@
 
         <EditText
             android:id="@+id/password"
+            android:maxLines="1"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:layout_marginTop="15dp"
@@ -103,6 +109,9 @@
 
         <EditText
             android:id="@+id/edt_confirmPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:layout_marginTop="15dp"
