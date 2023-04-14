@@ -6,14 +6,12 @@ import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.view.isVisible
 import androidx.core.view.size
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tiendaonline.Adapter.ProductsAdapter
-import com.example.tiendaonline.Controllers.AuthActivityController
 import com.example.tiendaonline.Filter.ProductFilter
 import com.example.tiendaonline.Filter.SubcategoryFilter
 import com.example.tiendaonline.Models.Categories.CategoryClient
@@ -29,7 +27,6 @@ import com.example.tiendaonline.Repository.OrdersRepository
 import com.example.tiendaonline.Repository.ProductsRepository
 import com.example.tiendaonline.Repository.SubcategoriesRepository
 import com.example.tiendaonline.databinding.ActivityHomeBinding
-import com.example.tiendaonline.util.DeviceUtils
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.GlobalScope
@@ -118,7 +115,7 @@ class HomeActivity : AppCompatActivity() {
 //            crearOrden()
         }
         btn3.setOnClickListener{
-            startActivity(Intent(this,AuthActivityController::class.java))
+            startActivity(Intent(this,LoginActivity::class.java))
         }
         //refrescar el recycleview
         binding.swipe.setOnRefreshListener {
