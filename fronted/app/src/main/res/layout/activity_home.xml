@@ -23,7 +23,7 @@ tools:context=".HomeActivity">
     android:id="@+id/btn3"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:visibility="visible"
+    android:visibility="gone"
     android:text="Login"/>
 <TextView
     android:id="@+id/tv"
