@@ -5,15 +5,22 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp">
+    android:layout_margin="30dp"
+    android:paddingVertical="40dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Login"
+        android:visibility="gone"
         android:textSize="24pt"
         android:textStyle="bold" />
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:background="@drawable/baseline_person_pin_24"/>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
@@ -34,9 +41,8 @@
         android:id="@+id/pass_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="@color/white"
-        android:layout_marginVertical="35dp"
+        android:layout_marginTop="35dp"
         android:hint="Clave">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPassword"
@@ -49,22 +55,74 @@
             android:textSize="27dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="15dp"
+        android:paddingHorizontal="5dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            >
+
+            <CheckBox
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="25px"
+                tools:ignore="TouchTargetSizeCheck" />
+            <TextView
+                android:id="@+id/textViewRemember"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="35px"
+                android:textStyle="bold"
+                android:text="Remember me"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:gravity="end"
+            android:text="Forgot password?"
+            android:textColor="@color/blue_light"
+            android:textStyle="bold|normal"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LogIn"/>
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BTN"/>
-
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="50px"
+        android:background="@color/orange"
+        android:paddingVertical="20px"
+        android:text="LogIn"
+        android:textSize="12pt"
+        tools:ignore="TextContrastCheck" />
     <TextView
         android:id="@+id/textViewRegister"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingVertical="20dp"
+        android:textSize="50px"
+        android:textStyle="bold"
         android:text="SignUp"/>
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BTN"
+        android:visibility="gone"/>
+
+
 
 </LinearLayout>
