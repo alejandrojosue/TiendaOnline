@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,11 +19,11 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/createText"
+            android:id="@+id/tvNameMoreInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="viewStart"
-            android:text="Create"
+            android:text="ProductName"
             android:padding="8dp"
             android:textColor="@color/primary_color"
             android:layout_marginStart="12dp"
@@ -33,8 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_clear_24"
-            android:layout_marginLeft="250dp"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="160dp"
             android:id="@+id/cancelButton"/>
 
     </LinearLayout>
@@ -54,9 +55,10 @@
             android:src="@drawable/baseline_cast_connected_24"/>
 
         <TextView
+            android:id="@+id/tvPriceMoreInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload a video"
+            android:text="Precio"
             android:textColor="@color/primary_color"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"/>
@@ -77,39 +79,35 @@
             android:src="@drawable/baseline_cast_connected_24"/>
 
         <TextView
+            android:id="@+id/tvQuantityMoreInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create a short"
+            android:text="Cantidad disponible"
             android:textColor="@color/primary_color"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"/>
 
     </LinearLayout>
 
+
+
     <LinearLayout
-        android:id="@+id/layoutLive"
-        android:orientation="horizontal"
+        android:id="@+id/layoutMoreInfo"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="30dp">
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_cast_connected_24"/>
-
         <TextView
+            android:id="@+id/tvDescriptionMoreInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Go live"
-            android:textColor="@color/primary_color"
-            android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
-
+            android:layout_marginHorizontal="20px"
+            android:fontFamily="@font/poppinsregular"
+            tools:text="Some description of product asdasdasdnacascasdklaskldas"
+            tools:ignore="MissingConstraints" />
     </LinearLayout>
 
 </LinearLayout>
