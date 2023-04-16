@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/home"
-        android:title="Home"
+        android:title="Inicio"
         android:icon="@drawable/baseline_home_24"/>
 
     <item
@@ -21,8 +21,8 @@
         android:title="Subscriptions"
         android:icon="@drawable/baseline_person_24" />
     <item
-        android:id="@+id/library"
-        android:title="Library"
+        android:id="@+id/shopping"
+        android:title="Carrito"
         android:icon="@drawable/baseline_shopping_cart_24" />
 
 </menu>

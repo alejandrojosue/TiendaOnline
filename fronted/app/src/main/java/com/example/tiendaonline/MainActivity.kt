@@ -10,17 +10,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-
-        btnLoginListener()
-        btnRegisterListener()
+        setUp()
     }
-    private fun btnLoginListener() {
+    private fun setUp(){
+        btn_homeBack.setOnClickListener {
+            startActivity(Intent(this,ContainerActivity::class.java))
+            finish()
+        }
         btn_login.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-    }
-
-    private fun btnRegisterListener() {
         btn_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }

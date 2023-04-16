@@ -92,7 +92,7 @@
             tools:ignore="TextSizeCheck" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/edt_password"
             android:maxLines="1"
             android:singleLine="true"
             android:layout_width="match_parent"

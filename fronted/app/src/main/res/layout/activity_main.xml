@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/poppinssemibold"
-        android:text="Obtén lo que buscas con Muebles Solecito"
+        android:text="Obtén lo que buscas"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -74,6 +74,20 @@
         android:background="@drawable/button_shape"
         android:fontFamily="@font/poppinssemibold"
         android:text="Register"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+    <Button
+        android:id="@+id/btn_homeBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:width="300dp"
+        android:background="@drawable/button_shape"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Regresar"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="15sp" />

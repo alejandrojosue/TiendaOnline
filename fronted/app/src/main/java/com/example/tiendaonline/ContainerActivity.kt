@@ -12,8 +12,10 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.tiendaonline.Middlewares.NetworkUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -23,15 +25,21 @@ class ContainerActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var navigationView: NavigationView
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_container)
-        setUp()
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.frame_layout, HomeFragment())
-                .commit()
-            navigationView.setCheckedItem(R.id.nav_home)
+        splash.setKeepOnScreenCondition{false}
+        if (NetworkUtils.isConnected(this)){
+            setUp()
+            if (savedInstanceState == null) {
+                supportFragmentManager.beginTransaction().replace(R.id.frame_layout, HomeFragment())
+                    .commit()
+                navigationView.setCheckedItem(R.id.nav_home)
+            }
+        }else{
+            startActivity(Intent(this,OfflLineActivity::class.java))
+            finish()
         }
     }
 
@@ -90,8 +98,10 @@ class ContainerActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.shorts -> {
                 }
-                R.id.subscriptions ->  startActivity(Intent(this, LoginActivity::class.java))  //replaceFragment(SubscriptionFragment())
-//                R.id.library -> replaceFragment(LibraryFragment())
+                R.id.subscriptions -> {
+                    startActivity(Intent(this,MainActivity::class.java))
+                }
+               R.id.shopping -> replaceFragment(ShoppingFragment())
             }
             true
         }
@@ -105,5 +115,6 @@ class ContainerActivity : AppCompatActivity() {
         fab.setOnClickListener {
             showBottomDialog()
         }
+        
     }
 }

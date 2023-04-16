@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tiendaonline.Adapter.ProductsAdapter
 import com.example.tiendaonline.Filter.ProductFilter
 import com.example.tiendaonline.Filter.SubcategoryFilter
+import com.example.tiendaonline.Middlewares.NetworkUtils
 import com.example.tiendaonline.Models.Categories.CategoryClient
 import com.example.tiendaonline.Models.Orders.Order
 import com.example.tiendaonline.Models.Orders.OrderData
@@ -43,7 +44,6 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private val products = ProductsRepository()
@@ -69,28 +69,18 @@ class HomeFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        // Inicializar el LayoutInflater
         binding = FragmentHomeBinding.inflate(layoutInflater)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(conexion()){
-            events()
-        }
+
+        events()
         sockets()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 
     override fun onCreateView(
@@ -111,11 +101,6 @@ class HomeFragment : Fragment() {
         }
         binding.rvProducts.layoutManager = manager
     }
-    fun conexion(): Boolean {
-        val connectivityManager = requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        return (networkInfo != null && networkInfo.isConnected)
-    }
 
     private fun events(){
         mostrarProductos()
@@ -123,7 +108,7 @@ class HomeFragment : Fragment() {
         mostrarSubcategorias()
         mostrarSubcategoriasFiltros()
         binding.btn.setOnClickListener {
-            if(conexion()){
+            if(NetworkUtils.isConnected(requireContext())){
                 mostrarProductos()
             }else{
                 Toast.makeText(context, "SIN INTERNET", Toast.LENGTH_LONG).show()
@@ -143,7 +128,6 @@ class HomeFragment : Fragment() {
 //            crearOrden()
         }
         binding.btn3.setOnClickListener{
-            //startActivity(Intent(this,LoginActivity::class.java))
         }
         //refrescar el recycleview
         binding.swipe.setOnRefreshListener {
@@ -191,7 +175,6 @@ class HomeFragment : Fragment() {
                             val chip = Chip(context)
                             chip.setText(category.Name)
                             chip.isCheckable = true
-
                             binding.chipGroup.addView(chip)
                         }
                     }
@@ -264,7 +247,6 @@ class HomeFragment : Fragment() {
                                 removeItemRecycleview(x)
                             }
                             updateRecycleview(response, x)
-                            tv.setText("${response.get("publishedAt")}${response.get("Name")}${response.get("Description")}${response.get("Price")}${response.getInt("Quantity")}")
                         }catch (e:java.lang.Exception){
                             println(e.message)
                         }
@@ -288,6 +270,9 @@ class HomeFragment : Fragment() {
         binding.rvProducts.adapter = adapter
     }
     private fun onItemClick(productsClient: ProductsClient){
+
+        //val intent = Intent(requireContext(),HomeFragment::class.java)
+        //intent.putExtra("productList", myList)
 //        if(productsClient.Quantity!!>0){
 //            addListado(1,productsClient.id!!)
 //            amount+=productsClient.Price!!
