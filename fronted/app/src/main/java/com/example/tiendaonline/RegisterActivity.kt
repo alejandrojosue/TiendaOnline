@@ -17,6 +17,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun btnRegisterListener() {
+
         if(edt_email.text.trim().isEmpty()){
             edt_email.setError("Este campo es obligatorio")
         }

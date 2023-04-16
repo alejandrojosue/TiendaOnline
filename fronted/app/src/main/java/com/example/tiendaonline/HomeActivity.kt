@@ -55,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
         binding =  ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         title = "Home"
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
+        //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
         if(conexion()){
             events()
         }
@@ -81,9 +81,6 @@ class HomeActivity : AppCompatActivity() {
         mostrarCategorias()
         mostrarSubcategorias()
         mostrarSubcategoriasFiltros()
-
-
-
         btn.setOnClickListener {
             if(conexion()){
                 mostrarProductos()

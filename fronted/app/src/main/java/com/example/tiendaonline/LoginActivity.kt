@@ -3,6 +3,8 @@ package com.example.tiendaonline
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.tiendaonline.Middlewares.validation.Companion.isValidEmail
+import com.example.tiendaonline.Middlewares.validation.Companion.validateTextViewRequired
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.view.*
 
@@ -18,12 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun btnLoginListener() {
         btn_login.setOnClickListener{
-            if( edt_email.text.toString().trim().isEmpty()){
-                edt_email.setError("Este campo es obligatorio")
-            }
-            if(edt_confirmPassword.text.toString().trim().isEmpty()){
-                edt_confirmPassword.setError("Este campo es obligatorio")
-            }
+            val isValid = validateTextViewRequired(edt_email) { text -> isValidEmail(text) }
         }
     }
 

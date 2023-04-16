@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
 object PreferenceHelper {
-
     fun defaultPrefs(context: Context): SharedPreferences
             = PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -17,10 +16,6 @@ object PreferenceHelper {
         operation(editor)
         editor.apply()
     }
-
-    /**
-     * puts a value for the given [key].
-     */
     operator fun SharedPreferences.set(key: String, value: Any?)
             = when (value) {
         is String? -> edit { it.putString(key, value) }
@@ -30,12 +25,6 @@ object PreferenceHelper {
         is Long -> edit { it.putLong(key, value) }
         else -> throw UnsupportedOperationException("Not yet implemented")
     }
-
-    /**
-     * finds a preference based on the given [key].
-     * [T] is the type of value
-     * @param defaultValue optional defaultValue - will take a default defaultValue if it is not specified
-     */
     inline operator fun <reified T : Any> SharedPreferences.get(key: String, defaultValue: T? = null): T
             = when (T::class) {
         String::class -> getString(key, defaultValue as? String ?: "") as T
