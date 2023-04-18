@@ -9,6 +9,7 @@ import com.example.tiendaonline.HomeFragment
 import com.example.tiendaonline.Models.ProductInformation.ProductsClient
 import com.example.tiendaonline.Services.ServiceBuilder
 import com.example.tiendaonline.databinding.ResourceItemProductsBinding
+import com.example.tiendaonline.util.DialogMessage
 import kotlinx.android.synthetic.main.bottomsheetlayout.*
 
 class ProductsViewHolder(view: View):RecyclerView.ViewHolder(view) {
@@ -19,19 +20,18 @@ class ProductsViewHolder(view: View):RecyclerView.ViewHolder(view) {
         binding.tvDescription.setText(productsClient.description)
         var url = "${ServiceBuilder.LOCALHOST}${productsClient.img?.data?.attributes?.url}"
         Glide.with(binding.img).load(url).into(binding.img)
-        binding.img.setOnClickListener{
-            //Toast.makeText(binding.img.context,url.toString(),Toast.LENGTH_LONG).show()
-        }
         binding.tvSKU.setText(" ${productsClient.SKU}")
         binding.tvQuantity.setText(" ${productsClient.Quantity.toString()}")
         binding.tvMoreInfo.setOnClickListener{
-            //Toast.makeText(binding.tvMoreInfo.context, binding.tvDescription.text,Toast.LENGTH_LONG).show()
             ContainerActivity.moreInfo(binding.tvDescription.context,
                 binding.tvName.text.toString(),
-                "Precio: L."+binding.tvPrice.text.toString(),
+                "Precio: "+binding.tvPrice.text.toString(),
                 "Cantidad disponible: "+binding.tvQuantity.text.toString(),
                 binding.tvDescription.text.toString())
         }
-        itemView.setOnClickListener{onClickListener(productsClient)}
+        binding.agregar.setOnClickListener{
+            if((binding.tvQuantity.text.toString().trim().toInt())>0) onClickListener(productsClient) else Toast.makeText(binding.tvQuantity.context, "No hay producto suficiente", Toast.LENGTH_LONG).show()
+        }
+        itemView.setOnClickListener{}
     }
 }

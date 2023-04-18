@@ -11,9 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import androidx.core.view.size
 import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tiendaonline.Adapter.ProductsAdapter
 import com.example.tiendaonline.Filter.ProductFilter
@@ -33,6 +35,8 @@ import com.example.tiendaonline.Repository.ProductsRepository
 import com.example.tiendaonline.Repository.SubcategoriesRepository
 import com.example.tiendaonline.databinding.ActivityHomeBinding
 import com.example.tiendaonline.databinding.FragmentHomeBinding
+import com.example.tiendaonline.util.DialogMessage
+import com.example.tiendaonline.util.Enviroments
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import kotlinx.android.synthetic.main.activity_home.*
@@ -47,10 +51,8 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private val products = ProductsRepository()
-    private  val orderRepository = OrdersRepository()
     private val categoriesRepository = CategoriesRepository()
     private val subcategoriesRepository = SubcategoriesRepository()
-    private var orderDetailMutableList = mutableListOf<OrderDetail>()
     lateinit var myList:MutableList<ProductsClient>
     lateinit var myListCategories: List<CategoryClient>
     lateinit var myListSubcategories: List<SubcategoriesClient>
@@ -58,10 +60,11 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding //= FragmentHomeBinding.inflate(layoutInflater)
     private val productFilter = ProductFilter()
     private val subcategoryFilter = SubcategoryFilter()
-    var amount:Double = 0.0
+
     private var columsNumber = 1
     //La cantidad de columnas a mostrar
     private var manager = GridLayoutManager(context,columsNumber)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +81,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         events()
         sockets()
     }
@@ -118,15 +120,6 @@ class HomeFragment : Fragment() {
             if(rvProducts.size > 0)  mostrarProductos(it.toString())
             if(binding.etSearch.text.length == 0)  mostrarProductos()
         }
-        binding.btn2.setOnClickListener{
-            if(orderDetailMutableList.size>0){
-                crearOrden("Melissa")
-            }else{
-                Toast.makeText(context, "No ha comprado nada", Toast.LENGTH_LONG).show()
-            }
-            //products.updateQuantity(1, 1)
-//            crearOrden()
-        }
         binding.btn3.setOnClickListener{
         }
         //refrescar el recycleview
@@ -145,6 +138,7 @@ class HomeFragment : Fragment() {
 //                delegate.applyDayNight()
             }
         }
+
     }
 
     private fun mostrarSubcategoriasFiltros() {
@@ -202,15 +196,9 @@ class HomeFragment : Fragment() {
 //            }
 //        }
     }
-    fun addListado(quantity:Int,productId:Int) = orderDetailMutableList.add(OrderDetail(quantity, OrderProduct(productId)))
-    fun removeProductoListado(id:Int) = orderDetailMutableList.remove(orderDetailMutableList.single{it.product.id == id}  )
-    private fun crearOrden(clientName:String){
-        GlobalScope.launch {
-            orderRepository.createOrder(Order(OrderData(amount,clientName,orderDetailMutableList.toList())))
-            orderDetailMutableList.clear()
-            amount=0.0
-        }
-    }
+    fun addListado(quantity:Int,productId:Int) = Enviroments.myListOrder.add(OrderDetail(quantity, OrderProduct(productId)))
+
+
     private fun mostrarProductos(productFilter:String = ""){
         try {
             GlobalScope.launch {
@@ -266,30 +254,31 @@ class HomeFragment : Fragment() {
     }
     private fun initRecycleview(){
         adapter = ProductsAdapter(myList) { productsClient -> onItemClick(productsClient) /*lambda*/ }
+        val decoration = DividerItemDecoration(context, manager.orientation)
         binding.rvProducts.layoutManager = manager
         binding.rvProducts.adapter = adapter
+        binding.rvProducts.addItemDecoration(decoration)
     }
-    private fun onItemClick(productsClient: ProductsClient){
-
-        //val intent = Intent(requireContext(),HomeFragment::class.java)
-        //intent.putExtra("productList", myList)
-//        if(productsClient.Quantity!!>0){
-//            addListado(1,productsClient.id!!)
-//            amount+=productsClient.Price!!
-//            GlobalScope.launch { products.updateQuantity(productsClient.id!!, productsClient.Quantity!!-1) }
-//        }else{
-//            Toast.makeText(this, "El producto ${productsClient.Name} está agotado!", Toast.LENGTH_LONG).show()
-//        }
+    private fun onItemClick(_productsClient: ProductsClient){
+        dialog(_productsClient)
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun dialog(_productsClient:ProductsClient){
+        DialogMessage(
+            onSubmitClickListener = {quantity->
+                if(_productsClient.Quantity!!>0){
+                    addListado(quantity,_productsClient.id!!)
+                    Enviroments.amount+=_productsClient.Price!!
+                    GlobalScope.launch {
+                        products.updateQuantity(_productsClient.id!!, _productsClient.Quantity!!-quantity)
+                        Enviroments.myListProduct.add(_productsClient)
+                    }
+                }else{
+                    Toast.makeText(context, "El producto ${_productsClient.Name} está agotado!", Toast.LENGTH_LONG).show()
                 }
-            }
+            },
+            productsClient = _productsClient
+        ).show(parentFragmentManager, "dialog")
     }
+
 }

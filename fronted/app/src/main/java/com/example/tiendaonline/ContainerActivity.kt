@@ -18,6 +18,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.tiendaonline.Middlewares.NetworkUtils
+import com.example.tiendaonline.util.Enviroments
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -55,17 +56,7 @@ class ContainerActivity : AppCompatActivity() {
     }
 
     private fun showBottomDialog() {
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.bottomsheetlayout)
-        dialog.show()
-        dialog.window!!.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
-        dialog.window!!.setGravity(Gravity.BOTTOM)
+
     }
     private fun setUp(){
         navigationView =  findViewById(R.id.nav_view)
@@ -82,6 +73,7 @@ class ContainerActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.shorts -> {
+                    println(Enviroments.myListOrder)
                 }
                 R.id.subscriptions -> {
                     startActivity(Intent(this,MainActivity::class.java))
