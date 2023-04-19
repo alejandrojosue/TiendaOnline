@@ -24,9 +24,11 @@ class Validation {
             val text = editText.text.toString().trim()
             return if (text.isEmpty()) {
                 editText.error = "Este campo es requerido"
+                editText.selectAll()
                 false
             } else if (!validationFunction(text)) {
                 editText.error = "El valor ingresado no es válido"
+                editText.selectAll()
                 false
             } else {
                 editText.error = null

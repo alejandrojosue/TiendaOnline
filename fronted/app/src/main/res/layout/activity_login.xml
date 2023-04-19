@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    tools:context=".ui.RegisterActivity"
     android:backgroundTint="@color/background"
     >
 
@@ -57,7 +57,7 @@
         >
 
         <EditText
-            android:id="@+id/edt_email"
+            android:id="@+id/edt_emailLogin"
             android:layout_width="match_parent"
             android:maxLines="1"
             android:singleLine="true"
@@ -74,7 +74,7 @@
             tools:ignore="TextSizeCheck" />
 
         <EditText
-            android:id="@+id/edt_confirmPassword"
+            android:id="@+id/edt_passwordLogin"
             android:layout_width="match_parent"
             android:maxLines="1"
             android:singleLine="true"

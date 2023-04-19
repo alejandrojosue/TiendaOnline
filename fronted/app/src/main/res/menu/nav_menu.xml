@@ -10,19 +10,15 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/baseline_home_24"
             android:clickable="true"
-            android:title="Home"/>
+            android:title="Inicio"/>
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/baseline_settings_24"
-            android:title="Settings"/>
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/baseline_settings_24"
-            android:title="Share"/>
+            android:title="Ajustes"/>
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/baseline_info_24"
-            android:title="About Us"/>
+            android:title="Sobre Nosotros"/>
     </group>
     <item
         android:title="">
@@ -30,7 +26,7 @@
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/baseline_exit_to_app_24"
-                android:title="Logout"/>
+                android:title="Cerrar Sesión"/>
         </menu>
     </item>
 </menu>

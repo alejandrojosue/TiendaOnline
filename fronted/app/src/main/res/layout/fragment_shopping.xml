@@ -6,12 +6,28 @@
     android:padding="10dp"
     android:paddingBottom="25dp"
     android:orientation="vertical"
-    tools:context=".ShoppingFragment">
-    <Button
-        android:id="@+id/btnComprar"
-        android:layout_width="wrap_content"
+    tools:context=".ui.ShoppingFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Finalizar compra"/>
+        android:layout_marginBottom="30px"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnComprar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finalizar compra"
+            android:background="@drawable/round_edittext_bg"/>
+        <TextView
+            android:id="@+id/tvTotalaPagar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="10pt"
+            android:gravity="right"
+            android:padding="20px"
+            android:text="L. 20000.00"/>
+    </LinearLayout>
     <TextView
         android:id="@+id/tvReport"
         android:layout_width="match_parent"
@@ -25,6 +41,4 @@
         android:id="@+id/rvOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-
 </LinearLayout>

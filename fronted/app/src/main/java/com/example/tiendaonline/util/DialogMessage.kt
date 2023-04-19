@@ -17,7 +17,6 @@ class DialogMessage(
     private val productsClient: ProductsClient
 ):DialogFragment() {
     private lateinit var binding: DialogMessageBinding
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = DialogMessageBinding.inflate(LayoutInflater.from(context))
         val builder = AlertDialog.Builder(requireActivity())

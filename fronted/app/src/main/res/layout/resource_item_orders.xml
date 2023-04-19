@@ -4,16 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="20dp"
-    >
-    <ImageView
-        android:id="@+id/delete"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/baseline_clear_24" />
-
+    android:layout_margin="20dp">
     <ImageView
         android:id="@+id/img"
         android:layout_width="150dp"
@@ -21,7 +12,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         tools:background="@drawable/button_shape" />
     <TextView
         android:id="@+id/tvName"
@@ -38,7 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/poppinssemibold"
         tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
@@ -51,7 +40,6 @@
         tools:text="L. 2000.00"
         android:fontFamily="@font/poppinsregular"
         tools:ignore="MissingConstraints" />
-
     <LinearLayout
         android:id="@+id/linearlayout1"
         android:layout_width="wrap_content"
@@ -75,8 +63,6 @@
             tools:ignore="MissingConstraints" />
 
     </LinearLayout>
-
-
     <LinearLayout
         android:id="@+id/linearlayout2"
         android:layout_width="0dp"
@@ -123,5 +109,11 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/baseline_clear_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,12 @@
 package com.example.tiendaonline.Adapter
-import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.tiendaonline.ContainerActivity
-import com.example.tiendaonline.HomeFragment
+import com.example.tiendaonline.ui.ContainerActivity
 import com.example.tiendaonline.Models.ProductInformation.ProductsClient
 import com.example.tiendaonline.Services.ServiceBuilder
 import com.example.tiendaonline.databinding.ResourceItemProductsBinding
-import com.example.tiendaonline.util.DialogMessage
-import kotlinx.android.synthetic.main.bottomsheetlayout.*
 
 class ProductsViewHolder(view: View):RecyclerView.ViewHolder(view) {
     private val binding = ResourceItemProductsBinding.bind(view)
