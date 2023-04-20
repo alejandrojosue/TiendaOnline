@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tiendaonline.Adapter.ProductsAdapter
 import com.example.tiendaonline.Filter.ProductFilter
+import com.example.tiendaonline.Maper.OrderMap
 import com.example.tiendaonline.Middlewares.NetworkUtils
 import com.example.tiendaonline.Models.Categories.CategoryClient
 import com.example.tiendaonline.Models.Orders.OrderDetail
@@ -45,21 +46,15 @@ class HomeFragment : Fragment() {
     lateinit var myListCategories: List<CategoryClient>
     lateinit var myListSubcategories: List<SubcategoriesClient>
     private lateinit var adapter: ProductsAdapter
-    private lateinit var binding: FragmentHomeBinding //= FragmentHomeBinding.inflate(layoutInflater)
+    private lateinit var binding: FragmentHomeBinding
     private val productFilter = ProductFilter()
     private var columsNumber = 1
     //La cantidad de columnas a mostrar
     private var manager = GridLayoutManager(context, columsNumber)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         binding = FragmentHomeBinding.inflate(layoutInflater)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         events()
@@ -101,8 +96,6 @@ class HomeFragment : Fragment() {
             if(rvProducts.size > 0)  mostrarProductos(it.toString())
             if(binding.etSearch.text.length == 0)  mostrarProductos()
         }
-        binding.btn3.setOnClickListener{
-        }
         //refrescar el recycleview
         binding.swipe.setOnRefreshListener {
             mostrarProductos()
@@ -111,7 +104,6 @@ class HomeFragment : Fragment() {
         }
 
     }
-
     private fun mostrarSubcategoriasFiltros() {
         binding.chipGroup.setOnCheckedChangeListener{group, checkedId ->
             try{
@@ -125,9 +117,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun filtrarSubcategoria(categoria:String){
-        adapter.updateList(productFilter.filterProductBySubcategory(categoria, myList))
-    }
+    private fun filtrarSubcategoria(categoria:String) = adapter.updateList(productFilter.filterProductBySubcategory(categoria, myList))
     private fun mostrarSubcategorias(){
         GlobalScope.launch {
             val subcategories = subcategoriesRepository.get()

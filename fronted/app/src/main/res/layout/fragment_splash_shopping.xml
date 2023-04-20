@@ -19,12 +19,13 @@
     <ImageView
         android:id="@+id/illustration1"
         android:layout_width="wrap_content"
-        android:layout_height="70pt"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/shape1"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/about"
+        android:src="@drawable/feedback"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true" />
+
 
     <TextView
         android:id="@+id/text1"
@@ -34,7 +35,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/poppinssemibold"
-        android:text="Acerca de Nosotros"
+        android:text="Orden de Compra"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -47,7 +48,7 @@
         android:gravity="center"
         android:paddingHorizontal="35dp"
         android:paddingTop="15dp"
-        android:text="Nuestra empresa se enfoca en birndar servicios de la más alta calidad y no solo eso, sino que los productos son buena categoría"
+        android:text="Ayudanos a completar algunos datos para poder finalizar tu compra en 3 sencillos pasos"
         android:textColor="@color/black" />
 
     <Button
@@ -60,7 +61,7 @@
         android:width="300dp"
         android:background="@drawable/button_shape"
         android:fontFamily="@font/poppinssemibold"
-        android:text="+504 3397-1213"
+        android:text="Continuar"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="15sp" />

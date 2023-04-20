@@ -13,14 +13,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@drawable/button_shape" />
+
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:maxLines="1"
+        android:maxLength="13"
         android:ellipsize="end"
-        tools:text="NAME"
+        tools:text="Alejandro Doksue dias"
         android:paddingLeft="20px"
+
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img"
@@ -103,9 +106,7 @@
                 android:id="@+id/btnIncrement"
                 android:layout_width="20pt"
                 android:layout_height="match_parent"
-                android:background="@drawable/baseline_add_24"
-                 />
-
+                android:background="@drawable/baseline_add_24"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -115,5 +116,5 @@
         android:layout_height="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/baseline_clear_24" />
+        android:background="@drawable/baseline_clear_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

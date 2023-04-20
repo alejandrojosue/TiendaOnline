@@ -21,13 +21,8 @@ class OrdersAdapter(
     override fun getItemCount(): Int = productList.size
 
     override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
-        val item = productList?.get(position)
-        val itemOrder = orderDetailList.get(position)
+        val item = productList[position]
+        val itemOrder = orderDetailList[position]
         holder.render(item!!, onClickListener, onClickDelete, itemOrder)
-    }
-
-    fun updateList(_orderList:List<ProductsClient>){
-        this.productList = _orderList
-        notifyDataSetChanged()
     }
 }

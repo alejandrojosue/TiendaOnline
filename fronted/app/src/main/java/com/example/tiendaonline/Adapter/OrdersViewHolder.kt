@@ -21,7 +21,7 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var url = "${ServiceBuilder.LOCALHOST}${productsClient.img?.data?.attributes?.url}"
         Glide.with(binding.img).load(url).into(binding.img)
         binding.tvSKU.setText(" ${productsClient.SKU}")
-        binding.edtQuantity.setText(" ${orderDetail.Quantity}")
+        binding.edtQuantity.setText(" ${orderDetail.Quantity.toString()}")
         binding.delete.setOnClickListener{
             onClickDelete(adapterPosition)
         }
@@ -40,6 +40,6 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
                 binding.edtQuantity.setText(miEntero.toString())
             }
         }
-        itemView.setOnClickListener { /*onClickListener(productsClient)*/ }
+        //itemView.setOnClickListener { /*onClickListener(productsClient)*/ }
     }
 }

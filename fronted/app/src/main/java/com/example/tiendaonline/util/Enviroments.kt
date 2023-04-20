@@ -10,6 +10,7 @@ class Enviroments: Application() {
         var myListOrder: MutableList<OrderDetail> = mutableListOf()
         var myListProduct: MutableList<ProductsClient> = mutableListOf()
         var amount:Double = 0.0
-
+        var myFullNameOrder: String = ""
+        var myEmailOrder: String = ""
     }
 }

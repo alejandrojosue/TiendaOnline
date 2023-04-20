@@ -11,13 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30px"
+        android:padding="10px"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btnComprar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Finalizar compra"
-            android:background="@drawable/round_edittext_bg"/>
+            android:background="@drawable/button_shape"/>
         <TextView
             android:id="@+id/tvTotalaPagar"
             android:layout_width="wrap_content"

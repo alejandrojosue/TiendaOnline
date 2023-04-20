@@ -12,10 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "users_permissions_user": {
+    "admin_user": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "admin::user"
     },
     "Details": {
       "type": "component",

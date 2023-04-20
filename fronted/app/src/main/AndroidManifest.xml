@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Confirm_ShoppingActivity"
+            android:name=".ui.ConfirmShopping.Confirm_ShoppingActivity"
             android:exported="false" />
         <activity
             android:name=".ui.OfflLineActivity"

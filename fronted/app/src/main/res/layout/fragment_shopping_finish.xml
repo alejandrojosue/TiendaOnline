@@ -1,14 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.ConfirmShopping.ShoppingFinishFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/shape1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/shape1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        />
+    <ImageView
+        android:id="@+id/illustration1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shape1"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/feedback"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true" />
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Finalizar mi orden"
+        android:textSize="12pt"
+        android:fontFamily="@font/poppinsbold"
+        android:layout_below="@+id/illustration1"
+        android:id="@+id/textViewTitle"/>
+    <RelativeLayout
+        android:id="@+id/relativeDataClient"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_above="@+id/finish_layout"
+        android:layout_below="@+id/illustration1"
+        android:paddingHorizontal="30dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:text="Si desea finalizar su compra, por favor presione finalizar pero si lo que desea es agregar al pedido, presione"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:textColorLink="@color/primary_color"
+            android:textSize="19sp" />
+    </RelativeLayout>
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/finish_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_color"
+            android:textStyle="bold"
+            android:textSize="9pt"
+            android:id="@+id/finishShppoing"
+            android:text="Finalizar"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/back_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_color"
+            android:textStyle="bold"
+            android:textSize="9pt"
+            android:id="@+id/backFinishShopping"
+            android:text="Regresar"/>
+    </RelativeLayout>
+
+</RelativeLayout>

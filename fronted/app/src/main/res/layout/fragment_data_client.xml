@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ConfirmShopping.DataClientFragment">
+    <ImageView
+        android:id="@+id/shape1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/shape1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        />
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/illustration1"
+        android:layout_width="wrap_content"
+        android:layout_height="260sp"
+        android:layout_below="@+id/textViewTitle"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/interview" />
+
     <TextView
+        android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsbold"
+        android:gravity="center"
+        android:layout_marginTop="130dp"
+        android:text="¿Quién hace el pedido?"
+        android:textSize="12pt" />
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/relativeDataClient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-3dp"
+        android:background="@color/white"
+        android:layout_marginBottom="130dp"
+        android:gravity="center"
+        android:paddingHorizontal="30dp">
+
+        <TextView
+            android:id="@+id/textViewNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Nombre:" />
+
+        <EditText
+            android:id="@+id/edtDataClientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewNombre"
+            android:fontFamily="@font/poppinsregular"
+            android:hint="Ingrese su nombre aquí"
+            android:maxLength="40"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/tvEmailDataClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtDataClientName"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Correo:" />
+
+        <EditText
+            android:id="@+id/edtDataClientEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvEmailDataClient"
+            android:fontFamily="@font/poppinsregular"
+            android:hint="Ingrese su correo aquí"
+            android:inputType="textEmailSubject"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:singleLine="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/next_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Siguiente"
+            android:textColor="@color/primary_color"
+            android:textStyle="bold"
+            android:textSize="9pt"
+            android:id="@+id/next"/>
+    </RelativeLayout>
+
+</RelativeLayout>

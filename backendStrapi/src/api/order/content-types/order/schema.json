@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "ClientName": {
+    "CustomerName": {
       "type": "string",
       "required": true,
       "maxLength": 40

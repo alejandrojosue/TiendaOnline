@@ -1,6 +1,8 @@
 package com.example.tiendaonline.ui
 
 import android.content.Context
+import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import com.example.tiendaonline.Models.Orders.OrderData
 import com.example.tiendaonline.Models.Orders.OrderDetail
 import com.example.tiendaonline.Repository.OrdersRepository
 import com.example.tiendaonline.databinding.FragmentShoppingBinding
+import com.example.tiendaonline.ui.ConfirmShopping.Confirm_ShoppingActivity
 import com.example.tiendaonline.util.Enviroments
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,7 +26,6 @@ import kotlinx.coroutines.launch
 class ShoppingFragment : Fragment() {
     private lateinit var adapter: OrdersAdapter
     private lateinit var binding: FragmentShoppingBinding
-    private  val orderRepository = OrdersRepository()
     private var columsNumber = 1
     private var manager = GridLayoutManager(context, columsNumber)
 
@@ -36,7 +38,10 @@ class ShoppingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUp()
     }
-
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        binding = FragmentShoppingBinding.inflate(layoutInflater)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,16 +49,17 @@ class ShoppingFragment : Fragment() {
         return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        binding = FragmentShoppingBinding.inflate(layoutInflater)
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        binding.rvOrder.layoutManager = manager
     }
 
     private fun setUp(){
-        initRecycleView()
+        binding.tvTotalaPagar.setText("L. ${Enviroments.amount.toString()}")
         binding.btnComprar.setOnClickListener {
-            crearOrden("Alejandro")
+            if(Enviroments.myListOrder.size>0) startActivity(Intent(context, Confirm_ShoppingActivity::class.java)) else Toast.makeText(context, "No ha comprado nada", Toast.LENGTH_LONG).show()
         }
+        initRecycleView()
     }
 
     private fun initRecycleView(){
@@ -67,37 +73,14 @@ class ShoppingFragment : Fragment() {
         binding.rvOrder.layoutManager = manager
         binding.rvOrder.adapter = adapter
         binding.rvOrder.addItemDecoration(decoration)
-
     }
     private fun onDeletedItem(position:Int){
         Enviroments.myListOrder.removeAt(position)
-        adapter.notifyItemRemoved(position)
+        Enviroments.myListProduct.removeAt(position)
+        //adapter.notifyItemRemoved(position)
+        initRecycleView()
     }
-    private fun onItemSelected(orderDetail: OrderDetail){
-
-    }
-
-    fun crearOrden(clientName:String){
-        GlobalScope.launch {
-            if(Enviroments.myListOrder.size>0){
-                orderRepository.createOrder(
-                    Order(
-                        OrderData(
-                            Enviroments.amount,
-                            clientName,
-                            Enviroments.myListOrder.toList()
-                        )
-                    )
-                )
-                Enviroments.myListOrder.clear()
-                Enviroments.amount =0.0
-            }else{
-                Toast.makeText(context, "No ha comprado nada", Toast.LENGTH_LONG).show()
-            }
-
-        }
-    }
-
-    fun removeProductoListado(id:Int) = Enviroments.myListOrder.remove(Enviroments.myListOrder.single{it.product.id == id}  )
+    private fun onItemSelected(orderDetail: OrderDetail){}
+    private fun removeProductoListado(id:Int) = Enviroments.myListOrder.remove(Enviroments.myListOrder.single{it.product.id == id})
 
 }

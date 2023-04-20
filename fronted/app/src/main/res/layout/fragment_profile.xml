@@ -1,13 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ProfileFragment">
+    <ImageView
+        android:id="@+id/shape1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/shape1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/r_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shape1"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Mi perfil de usuario"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        android:layout_marginTop="-15dp"
+        />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/r_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/r_text1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="40sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppinsregular"
+        android:text="Aquí te mostramos un resumen de lo que son tus datos almacenados"
+        android:textColor="@color/black"
+        android:textSize="13dp"
+        tools:ignore="TextSizeCheck" />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/r_text2"
+        android:padding="30dp"
+        >
+
+        <EditText
+            android:id="@+id/edt_fullnameProfile"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/poppinsregular"
+            android:hint="Ingrese su nombre completo"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/edt_emailProfile"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/poppinsregular"
+            android:hint="Ingrese su correo"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/edt_passwordProfile"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/poppinsregular"
+            android:hint="Crear Contraseña"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            tools:ignore="TextSizeCheck" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_saveProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/form"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:width="300dp"
+        android:background="@drawable/button_shape"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Guardar cambios"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+</RelativeLayout>
