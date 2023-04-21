@@ -14,7 +14,8 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
         productsClient: ProductsClient,
         onClickListener: (OrderDetail) -> Unit,
         onClickDelete: (Int) -> Unit,
-        orderDetail: OrderDetail
+        orderDetail: OrderDetail,
+        onClickMinusPlus: (Int, Boolean) -> Unit
     ) {
         binding.tvName.setText(productsClient.Name)
         binding.tvPrice.setText("L. ${productsClient.Price.toString()}")
@@ -31,15 +32,20 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
             if(miEntero<max){
                 miEntero++
                 binding.edtQuantity.setText(miEntero.toString())
+                onClickMinusPlus(adapterPosition, true)
             }
         }
         binding.btnDecrement.setOnClickListener{
             var miEntero = binding.edtQuantity.text.toString().trim().toInt()
             if(miEntero>0){
                 miEntero--
-                binding.edtQuantity.setText(miEntero.toString())
+                if(miEntero==0){
+                    onClickDelete(adapterPosition)
+                }else{
+                    binding.edtQuantity.setText(miEntero.toString())
+                    onClickMinusPlus(adapterPosition, false)
+                }
             }
         }
-        //itemView.setOnClickListener { /*onClickListener(productsClient)*/ }
     }
 }

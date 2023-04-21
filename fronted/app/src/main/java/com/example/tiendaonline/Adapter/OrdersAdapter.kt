@@ -11,7 +11,8 @@ class OrdersAdapter(
     private var productList:List<ProductsClient>,
     private val onClickListener:(OrderDetail) -> Unit,
     private val onClickDelete:(Int) -> Unit,
-    private val orderDetailList: List<OrderDetail>
+    private val orderDetailList: List<OrderDetail>,
+    private val onClickMinusPlus: (Int, Boolean) -> Unit
 ): RecyclerView.Adapter<OrdersViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -23,6 +24,6 @@ class OrdersAdapter(
     override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
         val item = productList[position]
         val itemOrder = orderDetailList[position]
-        holder.render(item!!, onClickListener, onClickDelete, itemOrder)
+        holder.render(item!!, onClickListener, onClickDelete, itemOrder, onClickMinusPlus)
     }
 }

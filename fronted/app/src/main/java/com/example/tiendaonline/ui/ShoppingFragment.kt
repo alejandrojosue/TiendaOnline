@@ -17,6 +17,7 @@ import com.example.tiendaonline.Models.Orders.Order
 import com.example.tiendaonline.Models.Orders.OrderData
 import com.example.tiendaonline.Models.Orders.OrderDetail
 import com.example.tiendaonline.Repository.OrdersRepository
+import com.example.tiendaonline.Repository.ProductsRepository
 import com.example.tiendaonline.databinding.FragmentShoppingBinding
 import com.example.tiendaonline.ui.ConfirmShopping.Confirm_ShoppingActivity
 import com.example.tiendaonline.util.Enviroments
@@ -28,6 +29,7 @@ class ShoppingFragment : Fragment() {
     private lateinit var binding: FragmentShoppingBinding
     private var columsNumber = 1
     private var manager = GridLayoutManager(context, columsNumber)
+    private val productsRepository = ProductsRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,11 +65,13 @@ class ShoppingFragment : Fragment() {
     }
 
     private fun initRecycleView(){
+        if(Enviroments.myListOrder.size==0) binding.tvReport.isVisible = true
         adapter = OrdersAdapter(
             productList = Enviroments.myListProduct.toList(),
             onClickListener = { orderDetail -> onItemSelected(orderDetail) },
             onClickDelete = { position -> onDeletedItem(position) },
             orderDetailList = Enviroments.myListOrder.toList(),
+            onClickMinusPlus = {position, isPlus -> onChangeQuantity(position,isPlus)}
         )
         val decoration = DividerItemDecoration(context, manager.orientation)
         binding.rvOrder.layoutManager = manager
@@ -75,12 +79,34 @@ class ShoppingFragment : Fragment() {
         binding.rvOrder.addItemDecoration(decoration)
     }
     private fun onDeletedItem(position:Int){
-        Enviroments.myListOrder.removeAt(position)
-        Enviroments.myListProduct.removeAt(position)
-        //adapter.notifyItemRemoved(position)
-        initRecycleView()
+        GlobalScope.launch {
+            productsRepository.updateQuantity(
+                Enviroments.myListProduct[position].id!!,
+                Enviroments.myListProduct[position].Quantity!!
+            )
+            Enviroments.myListOrder.removeAt(position)
+            Enviroments.myListProduct.removeAt(position)
+            activity?.runOnUiThread{initRecycleView()}
+        }
     }
     private fun onItemSelected(orderDetail: OrderDetail){}
-    private fun removeProductoListado(id:Int) = Enviroments.myListOrder.remove(Enviroments.myListOrder.single{it.product.id == id})
+
+    private fun onChangeQuantity(position: Int, isPlusButton: Boolean){
+        GlobalScope.launch {
+            var x = 1
+            if(isPlusButton) {
+                x = -1
+            }
+            productsRepository.updateQuantity(
+                Enviroments.myListProduct[position].id!!,
+                Enviroments.myListProduct[position].Quantity!! - Enviroments.myListOrder[position].Quantity + x
+            )
+            Enviroments.myListOrder[position].Quantity -= x
+        }
+    }
+
+    companion object{
+
+    }
 
 }
