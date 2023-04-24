@@ -31,7 +31,7 @@ module.exports = {
             <p style="padding: 0px 10px; color:#888; display: flex;">
                 <b style="width: 70px;">
                     Cliente: </b>&nbsp;
-                <span style="width: 370px; padding-bottom: 2px; border-bottom: 1px solid #888;">${result.ClientName}</span>
+                <span style="width: 370px; padding-bottom: 2px; border-bottom: 1px solid #888;">${result.CustomerName}</span>
             </p>
             <p style="padding: 0px 10px; color:#888; display: flex;">
                 <b style="width: 70px;">
