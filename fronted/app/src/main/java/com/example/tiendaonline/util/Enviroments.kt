@@ -18,11 +18,13 @@ class Enviroments: Application() {
     override fun onCreate() {
         super.onCreate()
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
-            override fun onActivityPaused(activity: Activity) {updateProductsOnClose()}
+            override fun onActivityPaused(activity: Activity) {
+//                updateProductsOnClose()
+            }
 
             override fun onActivityResumed(activity: Activity) {
                 currentActivity = activity
-                updateProductsOnClose(-1)
+//                updateProductsOnClose(-1)
             }
 
             override fun onActivityStarted(activity: Activity) {
@@ -37,7 +39,7 @@ class Enviroments: Application() {
 
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
         })
-        updateProductOnOpen()
+        //updateProductOnOpen()
     }
 
     private fun updateProductOnOpen(){
@@ -49,7 +51,7 @@ class Enviroments: Application() {
                     for (productsClient in myListProduct) {
                         i++
                         val response = productsRepository.getById(productsClient.id!!)
-                        if(response.isSuccess){
+                        if(response.isSuccess && myListOrder.size > 0){
                             productsRepository.updateQuantity(productsClient.id!!, response.getOrNull()!!.Quantity!! - myListOrder[i].Quantity!!)
                         }
                     }
@@ -58,24 +60,25 @@ class Enviroments: Application() {
         }
     }
 
-    private fun updateProductsOnClose(sign:Int = 1){
+    fun updateProductsOnClose(sign:Int = 1){
         if(myListProduct.size > 0){
             try {
                 GlobalScope.launch {
                     var i = -1
-                    for (productsClient in myListProduct) {
-                        i++
-                        val response = productsRepository.getById(productsClient.id!!)
-                        if(response.isSuccess){
-                            productsRepository.updateQuantity(productsClient.id, response.getOrNull()!!.Quantity!! + myListOrder[i].Quantity!!*(sign))
+                    if(!myListProduct.isNullOrEmpty()){
+                        for (productsClient in myListProduct) {
+                            i++
+                            val response = productsRepository.getById(productsClient.id!!)
+                            if(response.isSuccess && myListOrder.size > 0){
+                                productsRepository.updateQuantity(productsClient.id, response.getOrNull()!!.Quantity!! + myListOrder[i].Quantity!!*(sign))
+                            }
                         }
                     }
                 }
             }catch (e:Exception){}
         }
-
     }
-    private fun guardarListasEnPreferencias() {
+    fun guardarListasEnPreferencias() {
         val sharedPrefs = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val editor = sharedPrefs.edit()
         editor.putString("myListOrder", Gson().toJson(myListOrder))

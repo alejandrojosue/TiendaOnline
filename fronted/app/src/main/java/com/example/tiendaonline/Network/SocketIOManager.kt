@@ -14,7 +14,7 @@ object SocketIOManager {
             // to connect to the server
             val i = IO.Options()
             i.path = "/socket/v1" //Es el que se está usando en strapi
-            mSocket = IO.socket(LOCALHOST,i)
+            mSocket = IO.socket("$LOCALHOST",i)
             mSocket.connect()
         } catch (e: URISyntaxException) {}
     }

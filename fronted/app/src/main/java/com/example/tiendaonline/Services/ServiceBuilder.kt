@@ -21,12 +21,11 @@ object ServiceBuilder {
 
     // Android no maneja loalchost, usar esta ip es lo que se indica en la documentación oficial
     private const val PORT = "1337"
-    const val LOCAL = "http://10.0.2.2:$PORT"
-    const val WEB = "https://tiendamuebles.onrender.com"
+    private const val LOCAL = "http://10.0.2.2:$PORT"
+    private const val WEB = "https://tiendamuebles.onrender.com"
     const val LOCALHOST = LOCAL
 
 
-    private lateinit var instance: ServiceBuilder
     fun<T> buildService(service: Class<T>): T{
         lateinit var client:OkHttpClient
         if(token.contains(".")) {

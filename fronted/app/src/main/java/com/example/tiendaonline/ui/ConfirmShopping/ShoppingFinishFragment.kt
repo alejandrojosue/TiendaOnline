@@ -25,6 +25,7 @@ import kotlinx.coroutines.launch
 
 class ShoppingFinishFragment : Fragment() {
     private  val orderRepository = OrdersRepository()
+    private val enviroments = Enviroments()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,6 +73,7 @@ class ShoppingFinishFragment : Fragment() {
                         )
                     )
                 )
+                enviroments.updateProductsOnClose(-1)
                 Enviroments.myListOrder.clear()
                 Enviroments.myListProduct.clear()
                 Enviroments.amount = 0.0

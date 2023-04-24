@@ -14,4 +14,8 @@ class Confirm_ShoppingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_confirm_shopping)
         supportActionBar?.hide()
     }
+
+    override fun onPause() {
+        super.onPause()
+    }
 }
