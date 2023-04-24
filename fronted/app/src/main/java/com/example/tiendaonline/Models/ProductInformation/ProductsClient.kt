@@ -5,7 +5,7 @@ data class ProductsClient(
     val SKU: String?,
     val Name: String?,
     val Price: Double?,
-    val Quantity: Int?,
+    var Quantity: Int?,
     val subcategory: Subcategory?,
     val color: Color?,
     val description: String?,

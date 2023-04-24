@@ -2,6 +2,7 @@ package com.example.tiendaonline.Middlewares
 
 import android.util.Patterns
 import android.widget.EditText
+import androidx.core.text.isDigitsOnly
 
 class Validation {
     companion object{
@@ -35,7 +36,14 @@ class Validation {
                 true
             }
         }
-
+        fun validateMinLength(editText: EditText, len: Int): Boolean{
+            val text = editText.text.toString().trim()
+            return if(text.length<len){
+                editText.error = "Su identidad no es válida"
+                false
+            }else text.isDigitsOnly()
+            editText.error = null
+        }
     }
 }
 

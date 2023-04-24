@@ -1953,9 +1953,9 @@
     reselect "^4.1.7"
     yup "^0.32.9"
 
-"@strapi/plugin-documentation@^4.9.0":
+"@strapi/plugin-documentation@4.9.0":
   version "4.9.0"
-  resolved "https://registry.npmjs.org/@strapi/plugin-documentation/-/plugin-documentation-4.9.0.tgz"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-documentation/-/plugin-documentation-4.9.0.tgz#ce052a7179204326a96cc2f44a10b215a4e9c18f"
   integrity sha512-T7IY/XDH6VoW5fYpWQOuZY4uXAP1Jvw4DLIXnpKUb6Kb9D+aXEmNmicqG/G0wAdF51N1EAAOl+BlS5Oc/iuEvw==
   dependencies:
     "@strapi/design-system" "1.6.6"

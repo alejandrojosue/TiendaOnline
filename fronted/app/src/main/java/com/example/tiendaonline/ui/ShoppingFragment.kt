@@ -13,10 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tiendaonline.Adapter.OrdersAdapter
-import com.example.tiendaonline.Models.Orders.Order
-import com.example.tiendaonline.Models.Orders.OrderData
 import com.example.tiendaonline.Models.Orders.OrderDetail
-import com.example.tiendaonline.Repository.OrdersRepository
+import com.example.tiendaonline.Models.ProductInformation.ProductsClient
 import com.example.tiendaonline.Repository.ProductsRepository
 import com.example.tiendaonline.databinding.FragmentShoppingBinding
 import com.example.tiendaonline.ui.ConfirmShopping.Confirm_ShoppingActivity
@@ -33,12 +31,8 @@ class ShoppingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(Enviroments.myListOrder.size==0) binding.tvReport.isVisible = true
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         setUp()
+        if(Enviroments.myListOrder.size==0) binding.tvReport.isVisible = true
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -57,56 +51,86 @@ class ShoppingFragment : Fragment() {
     }
 
     private fun setUp(){
-        binding.tvTotalaPagar.setText("L. ${Enviroments.amount.toString()}")
+        initRecycleView()
+        binding.tvTotalaPagar.setText("L. ${Enviroments.amount}")
         binding.btnComprar.setOnClickListener {
-            if(Enviroments.myListOrder.size>0) startActivity(Intent(context, Confirm_ShoppingActivity::class.java)) else Toast.makeText(context, "No ha comprado nada", Toast.LENGTH_LONG).show()
+            if (Enviroments.myListOrder.size > 0) startActivity(
+                Intent(
+                    context,
+                    Confirm_ShoppingActivity::class.java
+                )
+            ) else Toast.makeText(context, "No ha comprado nada", Toast.LENGTH_LONG).show()
         }
+    }
+    private fun onDeletedItem(position:Int, quantity: Int){
+        GlobalScope.launch {
+            try {
+                val response = productsRepository.getById(Enviroments.myListProduct[position].id!!)
+                if(response.isSuccess){
+                    val product: ProductsClient = response.getOrNull()!!
+                    product.Quantity!!.let {
+                        productsRepository.updateQuantity(
+                            Enviroments.myListProduct[position].id!!,
+                            (it + quantity)
+                        )
+                    }
+                }else{
+                    println(response.exceptionOrNull())
+                }
+            }catch (e:Exception){
+                println(e.message)
+            }
+            activity?.runOnUiThread {
+                removeItemRecycleview(position)
+            }
+        }
+        Enviroments.amount -= Enviroments.myListOrder[position].Quantity * Enviroments.myListProduct[position].Price!!
+        binding.tvTotalaPagar.setText("L. ${Enviroments.amount}")
+    }
+
+    private fun removeItemRecycleview(position: Int) {
+        Enviroments.myListProduct.removeAt(position)
+        Enviroments.myListOrder.removeAt(position)
         initRecycleView()
     }
 
+    private fun onItemSelected(orderDetail: OrderDetail){}
     private fun initRecycleView(){
         if(Enviroments.myListOrder.size==0) binding.tvReport.isVisible = true
         adapter = OrdersAdapter(
             productList = Enviroments.myListProduct.toList(),
             onClickListener = { orderDetail -> onItemSelected(orderDetail) },
-            onClickDelete = { position -> onDeletedItem(position) },
+            onClickDelete = { position, quantity -> onDeletedItem(position, quantity) },
             orderDetailList = Enviroments.myListOrder.toList(),
-            onClickMinusPlus = {position, isPlus -> onChangeQuantity(position,isPlus)}
+            onClickMinusPlus = {position, isPlus, quantity -> onChangeQuantity(position,isPlus, quantity)}
         )
-        val decoration = DividerItemDecoration(context, manager.orientation)
         binding.rvOrder.layoutManager = manager
         binding.rvOrder.adapter = adapter
-        binding.rvOrder.addItemDecoration(decoration)
+        binding.rvOrder.addItemDecoration(DividerItemDecoration(context, manager.orientation))
     }
-    private fun onDeletedItem(position:Int){
-        GlobalScope.launch {
-            productsRepository.updateQuantity(
-                Enviroments.myListProduct[position].id!!,
-                Enviroments.myListProduct[position].Quantity!!
-            )
-            Enviroments.myListOrder.removeAt(position)
-            Enviroments.myListProduct.removeAt(position)
-            activity?.runOnUiThread{initRecycleView()}
-        }
-    }
-    private fun onItemSelected(orderDetail: OrderDetail){}
-
-    private fun onChangeQuantity(position: Int, isPlusButton: Boolean){
+    private fun onChangeQuantity(position: Int, isPlusButton: Boolean, quantity: Int){
         GlobalScope.launch {
             var x = 1
-            if(isPlusButton) {
-                x = -1
-            }
-            productsRepository.updateQuantity(
-                Enviroments.myListProduct[position].id!!,
-                Enviroments.myListProduct[position].Quantity!! - Enviroments.myListOrder[position].Quantity + x
-            )
-            Enviroments.myListOrder[position].Quantity -= x
+            try {
+                val response = productsRepository.getById(Enviroments.myListProduct[position].id!!)
+                if (response.isSuccess) {
+                    val product: ProductsClient = response.getOrNull()!!
+                    if(isPlusButton) {
+                        x = -1
+                        Enviroments.amount += Enviroments.myListProduct[position].Price!!
+                    }else{
+                        Enviroments.amount -= Enviroments.myListProduct[position].Price!!
+                    }
+                    product.Quantity.let {
+                        productsRepository.updateQuantity(
+                            Enviroments.myListProduct[position].id!!,
+                            it!! + x
+                        )
+                    }
+                    Enviroments.myListOrder[position].Quantity -= x
+                    activity?.runOnUiThread{binding.tvTotalaPagar.setText("L. ${Enviroments.amount}")}
+                }
+            }catch (e:Exception){}
         }
     }
-
-    companion object{
-
-    }
-
 }

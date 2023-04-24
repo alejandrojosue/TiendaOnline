@@ -39,7 +39,7 @@ class DialogMessage(
         }
         binding.btnDecrement.setOnClickListener{
             var miEntero = binding.edtQuantity.text.toString().trim().toInt()
-            if(miEntero>0){
+            if(miEntero>1){
                 miEntero--
                 binding.edtQuantity.setText(miEntero.toString())
             }

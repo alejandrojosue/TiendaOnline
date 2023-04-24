@@ -13,9 +13,9 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
     fun render(
         productsClient: ProductsClient,
         onClickListener: (OrderDetail) -> Unit,
-        onClickDelete: (Int) -> Unit,
+        onClickDelete: (Int, Int) -> Unit,
         orderDetail: OrderDetail,
-        onClickMinusPlus: (Int, Boolean) -> Unit
+        onClickMinusPlus: (Int, Boolean, Int) -> Unit
     ) {
         binding.tvName.setText(productsClient.Name)
         binding.tvPrice.setText("L. ${productsClient.Price.toString()}")
@@ -24,7 +24,7 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
         binding.tvSKU.setText(" ${productsClient.SKU}")
         binding.edtQuantity.setText(" ${orderDetail.Quantity.toString()}")
         binding.delete.setOnClickListener{
-            onClickDelete(adapterPosition)
+            onClickDelete(adapterPosition, binding.edtQuantity.text.toString().trim().toInt())
         }
         binding.btnIncrement.setOnClickListener{
             val max: Int = productsClient.Quantity!!
@@ -32,7 +32,7 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
             if(miEntero<max){
                 miEntero++
                 binding.edtQuantity.setText(miEntero.toString())
-                onClickMinusPlus(adapterPosition, true)
+                onClickMinusPlus(adapterPosition, true, binding.edtQuantity.text.toString().trim().toInt())
             }
         }
         binding.btnDecrement.setOnClickListener{
@@ -40,10 +40,10 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
             if(miEntero>0){
                 miEntero--
                 if(miEntero==0){
-                    onClickDelete(adapterPosition)
+                    onClickDelete(adapterPosition, binding.edtQuantity.text.toString().trim().toInt())
                 }else{
                     binding.edtQuantity.setText(miEntero.toString())
-                    onClickMinusPlus(adapterPosition, false)
+                    onClickMinusPlus(adapterPosition, false, binding.edtQuantity.text.toString().trim().toInt())
                 }
             }
         }

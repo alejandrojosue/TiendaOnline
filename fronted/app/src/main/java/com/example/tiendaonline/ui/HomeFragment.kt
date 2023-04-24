@@ -37,8 +37,6 @@ import org.json.JSONObject
 
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
     private val products = ProductsRepository()
     private val categoriesRepository = CategoriesRepository()
     private val subcategoriesRepository = SubcategoriesRepository()
@@ -93,8 +91,9 @@ class HomeFragment : Fragment() {
             }
         }
         binding.etSearch.addTextChangedListener{
+            binding.chipTodo.isChecked = true
             if(rvProducts.size > 0)  mostrarProductos(it.toString())
-            if(binding.etSearch.text.length == 0)  mostrarProductos()
+            if(binding.etSearch.text.isNullOrEmpty())  mostrarProductos()
         }
         //refrescar el recycleview
         binding.swipe.setOnRefreshListener {
@@ -102,7 +101,6 @@ class HomeFragment : Fragment() {
             binding.chipTodo.isChecked = true
             binding.swipe.isRefreshing = false
         }
-
     }
     private fun mostrarSubcategoriasFiltros() {
         binding.chipGroup.setOnCheckedChangeListener{group, checkedId ->
@@ -223,7 +221,7 @@ class HomeFragment : Fragment() {
             onSubmitClickListener = { quantity ->
                 if (_productsClient.Quantity!! > 0) {
                     addListado(quantity, _productsClient.id!!)
-                    Enviroments.amount += _productsClient.Price!!
+                    Enviroments.amount += _productsClient.Price!! * quantity
                     GlobalScope.launch {
                         products.updateQuantity(
                             _productsClient.id!!,

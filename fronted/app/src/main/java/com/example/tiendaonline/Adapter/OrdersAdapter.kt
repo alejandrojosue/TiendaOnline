@@ -10,9 +10,9 @@ import com.example.tiendaonline.R
 class OrdersAdapter(
     private var productList:List<ProductsClient>,
     private val onClickListener:(OrderDetail) -> Unit,
-    private val onClickDelete:(Int) -> Unit,
+    private val onClickDelete:(Int, Int) -> Unit,
     private val orderDetailList: List<OrderDetail>,
-    private val onClickMinusPlus: (Int, Boolean) -> Unit
+    private val onClickMinusPlus: (Int, Boolean, Int) -> Unit
 ): RecyclerView.Adapter<OrdersViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

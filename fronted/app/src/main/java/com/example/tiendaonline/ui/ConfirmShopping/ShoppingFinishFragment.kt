@@ -1,5 +1,6 @@
 package com.example.tiendaonline.ui.ConfirmShopping
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -16,6 +17,7 @@ import com.example.tiendaonline.Models.Orders.Order
 import com.example.tiendaonline.Models.Orders.OrderData
 import com.example.tiendaonline.R
 import com.example.tiendaonline.Repository.OrdersRepository
+import com.example.tiendaonline.ui.ContainerActivity
 import com.example.tiendaonline.util.Enviroments
 import kotlinx.android.synthetic.main.fragment_shopping_finish.view.*
 import kotlinx.coroutines.GlobalScope
@@ -30,12 +32,13 @@ class ShoppingFinishFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_shopping_finish, container, false)
         val viewPage = activity?.findViewById<ViewPager2>(R.id.viewPager2)
         view.finishShppoing.setOnClickListener{
-            if(Enviroments.myFullNameOrder.equals("") && Enviroments.myEmailOrder.equals("")){
+            if(Enviroments.myFullNameOrder != "" && Enviroments.myEmailOrder != ""){
                 crearOrden()
+                startActivity(Intent(context, ContainerActivity::class.java))
+                activity?.finish()
             }else{
                 viewPage?.currentItem = 0
             }
-            activity?.finish()
         }
         view.backFinishShopping.setOnClickListener{
             viewPage?.currentItem = 0
@@ -51,13 +54,10 @@ class ShoppingFinishFragment : Fragment() {
                 activity?.finish()
             }
         }
-
         spannableString.setSpan(clickableSpan, message.indexOf("aquí"), message.indexOf("aquí") + 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableString.setSpan(UnderlineSpan(), message.indexOf("aquí"), message.indexOf("aquí") + 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
         view.messageTextView.text = spannableString
         view.messageTextView.movementMethod = LinkMovementMethod.getInstance()
-
         return view
     }
     private fun crearOrden(){
@@ -66,14 +66,15 @@ class ShoppingFinishFragment : Fragment() {
                 orderRepository.createOrder(
                     Order(
                         OrderData(
-                            Enviroments.amount,
                             Enviroments.myFullNameOrder,
+                            Enviroments.amount,
                             Enviroments.myListOrder.toList()
                         )
                     )
                 )
                 Enviroments.myListOrder.clear()
-                Enviroments.amount =0.0
+                Enviroments.myListProduct.clear()
+                Enviroments.amount = 0.0
                 Enviroments.myFullNameOrder = ""
                 Enviroments.myEmailOrder = ""
             }

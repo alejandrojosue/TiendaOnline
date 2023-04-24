@@ -15,7 +15,7 @@ class OrdersRepository: IOrdersRepository {
                 println(response.body())
             }else{
                 println("${response.code()}")
-
+                println("${response.errorBody()}")
             }
         }catch (e:Exception){
             println(e.message)

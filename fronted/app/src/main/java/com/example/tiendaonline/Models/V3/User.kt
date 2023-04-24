@@ -11,6 +11,5 @@ data class User(
     val id: Int,
     val provider: String,
     val role: Role,
-    val updated_at: String,
     val username: String
 )
