@@ -14,7 +14,7 @@ module.exports = {
             }
             const mensaje = {
                 from: 'sistemaoperativoindependiente@gmail.com',
-                to: 'sistemaoperativoindependiente@gmail.com',
+                to: `${result.email}, sistemaoperativoindependiente@gmail.com`,
                 subject: 'Reporte de compra',
                 text: '',
                 html: `

@@ -67,9 +67,10 @@ class ShoppingFinishFragment : Fragment() {
                 orderRepository.createOrder(
                     Order(
                         OrderData(
-                            Enviroments.myFullNameOrder,
-                            Enviroments.amount,
-                            Enviroments.myListOrder.toList()
+                            CustomerName = Enviroments.myFullNameOrder,
+                            email = Enviroments.myEmailOrder,
+                            Amount = Enviroments.amount,
+                            Details = Enviroments.myListOrder.toList()
                         )
                     )
                 )

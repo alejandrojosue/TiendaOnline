@@ -25,6 +25,9 @@
     "Amount": {
       "type": "decimal",
       "required": true
+    },
+    "email": {
+      "type": "email"
     }
   }
 }

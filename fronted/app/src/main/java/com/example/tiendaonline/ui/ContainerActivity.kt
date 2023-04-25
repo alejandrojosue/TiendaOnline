@@ -21,14 +21,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.tiendaonline.Middlewares.NetworkUtils
 import com.example.tiendaonline.R
-import com.example.tiendaonline.Repository.ProductsRepository
-import com.example.tiendaonline.util.Enviroments
 import com.example.tiendaonline.util.IsUserLogin
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class ContainerActivity : AppCompatActivity() {
     private lateinit var fab: FloatingActionButton
